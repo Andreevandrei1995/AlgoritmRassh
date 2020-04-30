@@ -1,0 +1,6 @@
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\AlgoritmRassh.exe.config
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\AlgoritmRassh.exe
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\AlgoritmRassh.pdb
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.exe
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.pdb
