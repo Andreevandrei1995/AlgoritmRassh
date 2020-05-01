@@ -33,6 +33,7 @@ namespace ConsoleApp2
                     _connection.Close();
                 _connection.Open();
             }
+            //вернуть подключение
             return _connection;
         }
 
