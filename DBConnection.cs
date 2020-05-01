@@ -86,8 +86,7 @@ namespace AlgoritmRassh
             this._connection = new SqlConnection(GetConnectionQueryString());
             if (_connection != null && _connection.State != ConnectionState.Open)
             {
-                if (_connection.State != ConnectionState.Closed)
-                    _connection.Close();
+                this.CloseConnection();
                 _connection.Open();
             }
             if (_connection.State != ConnectionState.Open)

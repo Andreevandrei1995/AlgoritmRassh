@@ -22,34 +22,31 @@ namespace AlgoritmRassh
         /// Имя базы данных
         /// </summary>
         public string DataBaseName;
-        
+
         #endregion Данные
 
         /// <summary>
         /// Конструктор соединения
         /// </summary>
-        /// <param name="fileName"></param>
-        public AccessDBConnection(string fileName)
+        /// <param name="accessDbFileName"></param>
+        public AccessDBConnection(string accessDbFileName)
         {
-            if (!File.Exists(fileName))
+            if (!File.Exists(accessDbFileName))
             {
-                DataBaseName = fileName;
+                DataBaseName = accessDbFileName;
             }
             else
             {
-                Console.WriteLine("Файл "+ fileName + " не найден");
+                throw new Exception("Отсутствует файл БД " + accessDbFileName);
             }
         }        
 
         private OleDbConnection OpenConnection()
-        {
-            //this._connection = new OleDbConnection(GetConnectionQueryString());
-            this._connection = new OleDbConnection(GetConnectionQueryString());
-            
+        {            
+            this._connection = new OleDbConnection(GetConnectionQueryString());            
             if (_connection != null && _connection.State != ConnectionState.Open)
             {
-                if (_connection.State != ConnectionState.Closed)
-                    _connection.Close();
+                this.CloseConnection();
                 _connection.Open();
             }
             if (_connection.State != ConnectionState.Open)
@@ -68,7 +65,7 @@ namespace AlgoritmRassh
         #region Методы
         public string GetConnectionQueryString()
         {
-            return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName + ".mdb;";
+            return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName;
         }        
         #endregion Методы
 
