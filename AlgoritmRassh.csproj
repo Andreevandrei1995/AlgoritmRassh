@@ -44,17 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessDBConnection.cs" />
-    <Compile Include="DBConnection.cs" />
+    <Compile Include="DBConnections\AccessDBConnection.cs" />
+    <Compile Include="Events\PrevyshenieSkorosti.cs" />
+    <Compile Include="Formulations\Formulation.cs" />
+    <Compile Include="Parameters\AllVelocityRestrictions.cs" />
+    <Compile Include="Parameters\Coordinate.cs" />
+    <Compile Include="DBConnections\DBConnection.cs" />
+    <Compile Include="Parameters\LocoSvetofor.cs" />
     <Compile Include="Moment.cs" />
+    <Compile Include="Parameters\Svetofor.cs" />
+    <Compile Include="Parameters\VelocityRestriction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Parameters\Velocity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBViolationAlgoritm.mdb">
+    <Content Include="DBConnections\DBViolationAlgoritm.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

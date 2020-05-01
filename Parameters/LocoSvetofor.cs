@@ -8,17 +8,18 @@ namespace AlgoritmRassh
 {
     class LocoSvetofor
     {
+        public bool exist;
+
         /// <summary>
         /// Цвет светофора
         /// </summary>
-        private string Light;
+        public string color;
 
-        public LocoSvetofor
-
-        public string GetLight()
+        public LocoSvetofor(string color)
         {
-            return Light;
-        }
+            this.color = color;
 
+            this.exist = true;
+        }
     }
 }

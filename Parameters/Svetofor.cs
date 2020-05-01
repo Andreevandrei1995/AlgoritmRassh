@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AlgoritmRassh
+{
+    class Svetofor
+    {
+        public bool exist;
+
+        public string name;
+
+        public Coordinate coordinate;
+
+        public Svetofor(Coordinate coordinate, string name)
+        {
+            this.coordinate = coordinate;
+            this.name = name;
+
+            this.exist = true;
+        }
+    }
+}

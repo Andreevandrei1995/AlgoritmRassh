@@ -11,19 +11,86 @@ namespace AlgoritmRassh
 {
     class Program
     {
+        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
+        {
+            new KeyValuePair<string, string>("prevyshenieSkorosti","coordinate"),
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "locoSvetofor"),
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "velocity"),
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "svetofor"),
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "allVelocityRestrictions")
+        };
+
+        static bool checkNecessaryParams (string eventName, Moment moment)
+        {
+            List<string> necessaryParamNames = new List<string>();
+            foreach(KeyValuePair<string,string> dependency in dependencies) {
+                if (dependency.Key == eventName)
+                {
+                    necessaryParamNames.Add(dependency.Value);
+                }
+            }
+            if (necessaryParamNames.Count == 0)
+            {
+                return true;
+            }
+            Type type = typeof(Moment);
+            string beginOfOutString = "Проверка для поля " + eventName + ".";
+            int quantityFoundNecessaryParams = 0;
+            foreach (String necessaryParamName in necessaryParamNames)
+            {
+                FieldInfo fieldInfo = type.GetField(necessaryParamName);
+                var fieldValue = fieldInfo.GetValue(moment);
+                if (!(fieldValue is Object)) {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
+                    continue;
+                }
+                if (fieldValue == null)
+                {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не инициализировано.");
+                    continue;
+                }
+                //Работаем с полем exist
+                //Метод GetField возвращает null, если поле не найдено в классе
+                FieldInfo existField = fieldValue.GetType().GetField("exist");
+                if (existField == null)
+                {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не имеет поля exist.");
+                    continue;
+                }
+                var exist = existField.GetValue(fieldValue);
+                if (!(exist is bool))
+                {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist, у которого тип не равен bool.");
+                    continue;
+                }                
+                if (!(bool)exist)
+                {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist равное false.");
+                   continue;
+                }
+                quantityFoundNecessaryParams++;
+            }
+
+            if (quantityFoundNecessaryParams == necessaryParamNames.Count) {
+                return true;
+            }
+            return false;
+        }
+
+
         static void Main(string[] args)
         {
-            getFile();
-            Reflection reflection = new Reflection
-            {
-                a = "5",
-                b = "6"
-            };
-            Type type = typeof(Reflection);
-            FieldInfo fieldInfo = type.GetField("a");
-            Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
-            Console.WriteLine(fieldInfo.GetValue(reflection));
-            string a = null;
+            //getFile();
+            //Reflection reflection = new Reflection
+            //{
+            //    a = "5",
+            //    b = "6"
+            //};
+            //Type type = typeof(Reflection);
+            //FieldInfo fieldInfo = type.GetField("a");
+            //Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
+            //Console.WriteLine(fieldInfo.GetValue(reflection));
+            //string a = null;
         }
 
         static void getFile()
