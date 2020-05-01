@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Xml;
 
-namespace ConsoleApp2
+namespace AlgoritmRassh
 {
     /// <summary>
     /// Соединение с сервером
