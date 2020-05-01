@@ -2,14 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-//using System.ServiceModel.Channels;
-//using System.ServiceModel.Description;
-//using System.ServiceModel.Dispatcher;
-//using System.Text;
 using System.Xml;
-//using Постоянные_ограничения_скорости.ServiceReferenceEgisTps;
-//using Постоянные_ограничения_скорости.WebReferenceService1;
-//using Vtyagivanie.
 
 namespace ConsoleApp2
 {
