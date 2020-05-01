@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Data;
+using System.IO;
 
 namespace AlgoritmRassh
 {
@@ -29,23 +31,46 @@ namespace AlgoritmRassh
         /// <param name="fileName"></param>
         public AccessDBConnection(string fileName)
         {
-            DataBaseName = fileName;
-            OpenConnection();
+            if (!File.Exists(fileName))
+            {
+                DataBaseName = fileName;
+            }
+            else
+            {
+                Console.WriteLine("Файл "+ fileName + " не найден");
+            }
+        }        
+
+        private OleDbConnection OpenConnection()
+        {
+            //this._connection = new OleDbConnection(GetConnectionQueryString());
+            this._connection = new OleDbConnection(GetConnectionQueryString());
+            
+            if (_connection != null && _connection.State != ConnectionState.Open)
+            {
+                if (_connection.State != ConnectionState.Closed)
+                    _connection.Close();
+                _connection.Open();
+            }
+            if (_connection.State != ConnectionState.Open)
+                throw new Exception("Не удалось соединиться с базой данных");
+            //вернуть подключение
+            return _connection;
         }
 
-        public void OpenConnection()
+        private OleDbConnection CloseConnection()
         {
-            _connection = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName + ".mdb;");
-            if (_connection.State != System.Data.ConnectionState.Open)
-                try
-                {
-                    _connection.Open();
-                }
-                catch (Exception er)
-                {
-                    Console.WriteLine("Не удалось открыть файл базы данных. Ошибка: " + er.Message);
-                    _connection = null;
-                }
+            if (_connection != null && _connection.State != ConnectionState.Closed)
+                _connection.Close();
+            return _connection;
         }
+
+        #region Методы
+        public string GetConnectionQueryString()
+        {
+            return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName + ".mdb;";
+        }        
+        #endregion Методы
+
     }
 }
