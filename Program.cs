@@ -11,11 +11,14 @@ namespace AlgoritmRassh
     {
         static void Main(string[] args)
         {
-            Reflection reflection = new Reflection();
-            reflection.a = "5";
-            reflection.b = "6";
+            Reflection reflection = new Reflection
+            {
+                a = "5",
+                b = "6"
+            };
             Type type = typeof(Reflection);
             FieldInfo fieldInfo = type.GetField("a");
+            Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
             Console.WriteLine(fieldInfo.GetValue(reflection));
         }
     }

@@ -78,56 +78,6 @@ namespace ConsoleApp2
         /// </summary>
         public string Password;
 
-        /*
-        /// <summary>
-        /// Соединение с базой данных
-        /// </summary>
-        //public SqlConnection Connection2;
-         
-        /// <summary>
-        /// Имя базы данных
-        /// </summary>
-        public string DataBaseName2;
-
-        /// <summary>
-        /// Признак использования библиотеки DBMSSOCN
-        /// </summary>
-        public bool NetworkLibraryDBMSSOCN2;
-
-        /// <summary>
-        /// Имя сервера
-        /// </summary>
-        public string ServerName2;
-
-        /// <summary>
-        /// Имя пользователя
-        /// </summary>
-        public string UserName2;
-
-        /// <summary>
-        /// Признак входа с Windows Authentication
-        /// </summary>
-        public bool WindowsAuthentication2;
-
-        /// <summary>
-        /// Имя рабочей станции
-        /// </summary>
-        public string WorkStationName2;
-
-        /// <summary>
-        /// Пароль
-        /// </summary>
-        public string Password2;
-       
-        /// <summary>
-        /// Признак использования Web-сервиса при доступе к данным
-        /// </summary>
-        //public bool UseWebService;
-        */
-
-
-        #endregion
-
         #region Методы
 
         /// <summary>
