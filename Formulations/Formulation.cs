@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class Formulation
+    class Formulation : InterfaceExist
     {
+        public bool exist { get; set; }
     }
 }

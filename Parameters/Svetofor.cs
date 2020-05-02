@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class Svetofor
+    class Svetofor : InterfaceExist
     {
-        public bool exist;
+        public bool exist { get; set; }
 
         public string name;
 

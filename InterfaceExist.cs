@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class PrevyshenieSkorosti : InterfaceExist
+    interface InterfaceExist
     {
-        public bool exist { get; set; }
+        bool exist { get; set; }
     }
 }

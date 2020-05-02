@@ -47,6 +47,7 @@
     <Compile Include="DBConnections\AccessDBConnection.cs" />
     <Compile Include="Events\PrevyshenieSkorosti.cs" />
     <Compile Include="Formulations\Formulation.cs" />
+    <Compile Include="InterfaceExist.cs" />
     <Compile Include="Parameters\AllVelocityRestrictions.cs" />
     <Compile Include="Parameters\Coordinate.cs" />
     <Compile Include="DBConnections\DBConnection.cs" />

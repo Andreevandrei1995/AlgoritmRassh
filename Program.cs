@@ -39,6 +39,12 @@ namespace AlgoritmRassh
             foreach (String necessaryParamName in necessaryParamNames)
             {
                 FieldInfo fieldInfo = type.GetField(necessaryParamName);
+                //Метод GetField возвращает null, если поле не найдено в классе
+                if (fieldInfo == null)
+                {
+                    Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
+                    continue;
+                }
                 var fieldValue = fieldInfo.GetValue(moment);
                 if (!(fieldValue is Object)) {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
@@ -50,20 +56,13 @@ namespace AlgoritmRassh
                     continue;
                 }
                 //Работаем с полем exist
-                //Метод GetField возвращает null, если поле не найдено в классе
-                FieldInfo existField = fieldValue.GetType().GetField("exist");
-                if (existField == null)
+                if (!(fieldValue is InterfaceExist))
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не имеет поля exist.");
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
                 }
-                var exist = existField.GetValue(fieldValue);
-                if (!(exist is bool))
-                {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist, у которого тип не равен bool.");
-                    continue;
-                }                
-                if (!(bool)exist)
+                InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
+                if (!interfaceExist.exist)
                 {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist равное false.");
                    continue;
@@ -80,18 +79,25 @@ namespace AlgoritmRassh
 
         static void Main(string[] args)
         {
-            //getFile();
-            //Reflection reflection = new Reflection
-            //{
-            //    a = "5",
-            //    b = "6"
-            //};
-            //Type type = typeof(Reflection);
-            //FieldInfo fieldInfo = type.GetField("a");
-            //Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
-            //Console.WriteLine(fieldInfo.GetValue(reflection));
-            //string a = null;
-        }
+            Velocity velocity = new Velocity(12);
+            Console.WriteLine(velocity.exist);
+            InterfaceExist interface2 = velocity;
+            interface2.exist = false;
+            Console.WriteLine(velocity.exist);
+            Console.WriteLine(interface2.GetType());
+            Console.WriteLine(interface2 is Velocity);
+        //getFile();
+        //Reflection reflection = new Reflection
+        //{
+        //    a = "5",
+        //    b = "6"
+        //};
+        //Type type = typeof(Reflection);
+        //FieldInfo fieldInfo = type.GetField("a");
+        //Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
+        //Console.WriteLine(fieldInfo.GetValue(reflection));
+        //string a = null;
+    }
 
         static void getFile()
         {

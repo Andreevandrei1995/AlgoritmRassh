@@ -4,3 +4,4 @@ C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\AlgoritmRa
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.csprojAssemblyReference.cache
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.exe
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.pdb
+C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\DBConnections\DBViolationAlgoritm.mdb

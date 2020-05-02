@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class AllVelocityRestrictions
+    class AllVelocityRestrictions : InterfaceExist 
     {
-        public bool exist;
+        public bool exist { get; set; }
         List<Object> list;
 
         public AllVelocityRestrictions () {
@@ -19,7 +19,7 @@ namespace AlgoritmRassh
         public void Add (Object velocityRestriction)
         {
             if (velocityRestriction is VelocityRestriction && velocityRestriction != null) {
-                VelocityRestriction vel = velocityRestriction as VelocityRestriction;
+                VelocityRestriction vel = (VelocityRestriction)velocityRestriction;
                 if (vel.exist)
                 {
                     this.list.Add(velocityRestriction);

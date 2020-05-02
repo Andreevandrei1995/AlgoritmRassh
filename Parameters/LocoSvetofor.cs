@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class LocoSvetofor
+    class LocoSvetofor : InterfaceExist
     {
-        public bool exist;
+        public bool exist { get; set; }
 
         /// <summary>
         /// Цвет светофора

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    abstract class VelocityRestriction
+    abstract class VelocityRestriction : InterfaceExist
     {
-        public bool exist;
+        public bool exist { get; set; }
 
         public Velocity velocity;
 
