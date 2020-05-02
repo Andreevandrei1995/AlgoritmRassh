@@ -10,8 +10,10 @@ namespace AlgoritmRassh
     {
         public bool exist { get; set; }
         public CurrentVelocity(double value) : base(value)
-        {            
-            
+        {
+            Program.allNecessaryParamsFoundOrException("currentVelocity");
+            Moment moment = Program.lastMoment;
+            this.exist = true;
         }
     }
 }

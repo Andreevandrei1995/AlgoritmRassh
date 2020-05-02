@@ -17,5 +17,9 @@ namespace AlgoritmRassh
         public int pkSvetofor;
         public int mSvetofor;
         public double valueVelocity;
+        public InitialParamsForOneMoment()
+        {
+
+        }
     }
 }

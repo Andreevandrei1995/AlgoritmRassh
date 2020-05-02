@@ -13,48 +13,32 @@ namespace AlgoritmRassh
         public List<Object> list;
         public AllActiveVelocityRestrictions()
         {
-            if (!AllActiveVelocityRestrictions.isAllRestrictionsCanBeChecked())
+            if (!AllActiveVelocityRestrictions.areAllRestrictionsInitialized())
             {
                 throw new Exception("Не все ограничения могут быть проверены.");
             }
-
             this.list = new List<Object>();
             this.exist = false;
             List<Object> allVelocityRestrictions = new List<Object>(Program.allVelocityRestrictions);
-            foreach (object velocityRestriction in allVelocityRestrictions)
+            foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
             {
-                this.Add(velocityRestriction);
-            }
-        }
-        public void Add (Object velocityRestriction)
-        {
-            if (!(velocityRestriction is VelocityRestriction && velocityRestriction != null)) 
-            {
-                return;                
-            }
-            VelocityRestriction vel = (VelocityRestriction)velocityRestriction;
-            if (vel.check())
-            {
-                this.list.Add(velocityRestriction);
-                this.exist = true;
-            }
-        }
-        public static bool isAllRestrictionsCanBeChecked()
-        {
-            
-            List<Object> allVelocityRestrictions = new List<Object>(Program.allVelocityRestrictions);      
-            foreach (object velocityRestriction in allVelocityRestrictions)
-            {
-                if (!(velocityRestriction is VelocityRestriction && velocityRestriction != null))
+                if (velocityRestriction.check())
                 {
-                    return false;                    
-                }
-                VelocityRestriction vel = (VelocityRestriction)velocityRestriction;
+                    this.list.Add(velocityRestriction);
+                    this.exist = true;
+                }                
+            }
+        }
+        public static bool areAllRestrictionsInitialized()
+        {
+            List<Object> allVelocityRestrictions = new List<Object>(Program.allVelocityRestrictions);      
+            foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
+            {
                 //Exception может выскочить при попытке проверить все необходимые элементы для проверки ограничения на факт,
                 //что оно является активным в данный moment
                 try
                 {
-                    vel.check();
+                    velocityRestriction.check();
                 }
                 catch (Exception e)
                 {

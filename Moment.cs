@@ -57,7 +57,7 @@ namespace AlgoritmRassh
                 {
                     try
                     {
-                        this.svetofor = new Svetofor(new Coordinate(initialParams.kmSvetofor, initialParams.pkSvetofor, initialParams.mSvetofor), initialParams.nameSvetofor);
+                        this.svetofor = new Svetofor(initialParams.kmSvetofor, initialParams.pkSvetofor, initialParams.mSvetofor, initialParams.nameSvetofor);
                     }
                     catch (Exception e)
                     {

@@ -13,9 +13,9 @@ namespace AlgoritmRassh
         public PrevyshenieSkorosti()
         {
             Program.allNecessaryParamsFoundOrException("prevyshenieSkorosti");
+            Moment moment = Program.lastMoment;
             this.list = new List<Object>();
-            this.exist = false;
-            Moment moment = Program.lastMoment;            
+            this.exist = false;            
             foreach (VelocityRestriction velocityRestriction in moment.allActiveVelocityRestrictions.list)
             {
                 if (moment.currentVelocity.value > velocityRestriction.velocity.value)

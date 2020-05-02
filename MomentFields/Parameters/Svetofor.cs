@@ -11,10 +11,11 @@ namespace AlgoritmRassh
         public bool exist { get; set; }
         public string name;
         public Coordinate coordinate;
-        public Svetofor(Coordinate coordinate, string name)
+        public Svetofor(string km, int pk, int m, string name)
         {
             Program.allNecessaryParamsFoundOrException("svetofor");
-            this.coordinate = coordinate;
+            Moment moment = Program.lastMoment;
+            this.coordinate = new Coordinate(km, pk, m);
             this.name = name;
             this.exist = true;
         }
