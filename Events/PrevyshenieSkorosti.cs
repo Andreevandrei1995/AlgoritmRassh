@@ -15,14 +15,18 @@ namespace AlgoritmRassh
         public PrevyshenieSkorosti()
         {
             Program.allNecessaryParamsFoundOrException("prevyshenieSkorosti");
+
+            this.list = new List<Object>();
+            this.exist = false;
             Moment moment = Program.lastMoment;            
             foreach (VelocityRestriction velocityRestriction in moment.allActiveVelocityRestrictions.list)
             {
                 if (moment.velocity.value > velocityRestriction.velocity)
                 {
                     this.list.Add(velocityRestriction);
+                    this.exist = true;
                 }
-            }
+            }            
         }
     }
 }

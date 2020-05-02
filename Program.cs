@@ -33,7 +33,7 @@ namespace AlgoritmRassh
         {
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "coordinate"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locosvetofor"),
+            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
             new KeyValuePair<string, string>("prevyshenieSkorosti", "coordinate"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "locoSvetofor"),
@@ -52,9 +52,33 @@ namespace AlgoritmRassh
                 colorLocoSvetofor = "КЖ",
                 nameSvetofor = "m3",
                 kmSvetofor = "5",
-                pkSvetofor = 7,
+                pkSvetofor = 6,
                 mSvetofor = 36,
                 valueVelocity = 25
+            },
+            new InitialParamsForOneMoment()
+            {
+                kmCoordinate = "5",
+                pkCoordinate = 3,
+                mCoordiante = 52,
+                colorLocoSvetofor = "КЖ",
+                nameSvetofor = "m3",
+                kmSvetofor = "5",
+                pkSvetofor = 9,
+                mSvetofor = 36,
+                valueVelocity = 25
+            },
+            new InitialParamsForOneMoment()
+            {
+                kmCoordinate = "5",
+                pkCoordinate = 3,
+                mCoordiante = 52,
+                colorLocoSvetofor = "КЖ",
+                nameSvetofor = "m3",
+                kmSvetofor = "5",
+                pkSvetofor = 6,
+                mSvetofor = 36,
+                valueVelocity = 18
             }
         };
 
@@ -127,13 +151,7 @@ namespace AlgoritmRassh
                 {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
-                }
-                InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
-                if (!interfaceExist.exist)
-                {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist равное false.");
-                    continue;
-                }
+                }               
                 quantityFoundNecessaryParams++;
             }
 
