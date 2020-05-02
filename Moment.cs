@@ -10,17 +10,21 @@ namespace AlgoritmRassh
 {
     class Moment
     {
-        public Coordinate coordinate = null;
-        public LocoSvetofor locoSvetofor = null;
-        public Svetofor svetofor = null;
-        public Velocity velocity = null;
-        public AllActiveVelocityRestrictions allActiveVelocityRestrictions = new AllActiveVelocityRestrictions();
-
-        public PrevyshenieSkorosti prevyshenieSkorosti = null;
+        public Coordinate coordinate;
+        public LocoSvetofor locoSvetofor;
+        public Svetofor svetofor;
+        public Velocity velocity;
+        public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
+        public PrevyshenieSkorosti prevyshenieSkorosti;
 
         public Moment()
         {
-
+            this.coordinate = null;
+            this.locoSvetofor = null;
+            this.svetofor = null;
+            this.velocity = null;
+            this.allActiveVelocityRestrictions = null;
+            this.prevyshenieSkorosti = null;
         }
 
         public void init(InitialParamsForOneMoment initialParams)

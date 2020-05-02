@@ -127,7 +127,13 @@ namespace AlgoritmRassh
                 {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
-                }                
+                }
+                InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
+                if (!interfaceExist.exist)
+                {
+                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist равное false.");
+                    continue;
+                }
                 quantityFoundNecessaryParams++;
             }
 
