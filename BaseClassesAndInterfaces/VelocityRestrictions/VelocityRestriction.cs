@@ -9,11 +9,8 @@ namespace AlgoritmRassh
     abstract class VelocityRestriction
     {
         public Velocity velocity;
-
         public string type;
-
         abstract public bool check();
-
         public VelocityRestriction(double valueVelocity, string type)
         {            
             this.velocity = new Velocity(valueVelocity);

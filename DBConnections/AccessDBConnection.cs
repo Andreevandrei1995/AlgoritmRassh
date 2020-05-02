@@ -11,18 +11,15 @@ namespace AlgoritmRassh
 {
     class AccessDBConnection
     {
-
         #region Данные
         /// <summary>
         /// Соединение с базой данных
         /// </summary>
         public OleDbConnection _connection;
-
         /// <summary>
         /// Имя базы данных
         /// </summary>
         public string DataBaseName;
-
         #endregion Данные
 
         #region Методы
@@ -40,8 +37,7 @@ namespace AlgoritmRassh
             {
                 throw new Exception("Отсутствует файл БД " + accessDbFileName);
             }
-        }        
-
+        }
         private OleDbConnection OpenConnection()
         {            
             this._connection = new OleDbConnection(GetConnectionQueryString());            
@@ -55,19 +51,16 @@ namespace AlgoritmRassh
             //вернуть подключение
             return _connection;
         }
-
         private OleDbConnection CloseConnection()
         {
             if (_connection != null && _connection.State != ConnectionState.Closed)
                 _connection.Close();
             return _connection;
-        }
-        
+        }        
         public string GetConnectionQueryString()
         {
             return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName;
         }        
         #endregion Методы
-
     }
 }

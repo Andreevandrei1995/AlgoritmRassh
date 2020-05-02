@@ -16,7 +16,6 @@ namespace AlgoritmRassh
         public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
         public PrevyshenieSkorosti prevyshenieSkorosti;
-
         public Moment()
         {
             this.currentCoordinate = null;
@@ -26,7 +25,6 @@ namespace AlgoritmRassh
             this.allActiveVelocityRestrictions = null;
             this.prevyshenieSkorosti = null;
         }
-
         public void init(InitialParamsForOneMoment initialParams)
         {            
             int maxCycles = 100;
@@ -99,12 +97,9 @@ namespace AlgoritmRassh
 
                     }
                 }
-
                 quantityCycles++;
             }
-
         }
-
         private bool checkAllFieldsAreInitialized ()
         {
             Type type = this.GetType();
@@ -132,7 +127,6 @@ namespace AlgoritmRassh
                 }
                 quantityFoundNecessaryParams++;
             }
-
             if (quantityFoundNecessaryParams == allFields.Length)
             {
                 return true;

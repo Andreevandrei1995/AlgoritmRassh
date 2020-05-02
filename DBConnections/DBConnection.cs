@@ -16,43 +16,35 @@ namespace AlgoritmRassh
         /// Соединение с базой данных
         /// </summary>
         public SqlConnection _connection;
-
         /// <summary>
         /// Имя базы данных
         /// </summary>
         public string DataBaseName;
-
         /// <summary>
         /// Признак использования библиотеки DBMSSOCN
         /// </summary>
         public bool NetworkLibraryDBMSSOCN;
-
         /// <summary>
         /// Имя сервера
         /// </summary>
         public string ServerName;
-
         /// <summary>
         /// Имя пользователя
         /// </summary>
         public string UserName;
-
         /// <summary>
         /// Признак входа с Windows Authentication
         /// </summary>
         public bool WindowsAuthentication;
-
         /// <summary>
         /// Имя рабочей станции
         /// </summary>
         public string WorkStationName;
-
         /// <summary>
         /// Пароль
         /// </summary>
         public string Password;
         #endregion Данные
-
 
         #region Методы
         /// <summary>
@@ -80,7 +72,6 @@ namespace AlgoritmRassh
             }
             NetworkLibraryDBMSSOCN = (GetAttributeValueFromXml(xmlNode, "NetworkLibraryDBMSSOCN", "0") == "1");
         }
-
         private SqlConnection OpenConnection()
         {
             this._connection = new SqlConnection(GetConnectionQueryString());
@@ -94,14 +85,12 @@ namespace AlgoritmRassh
             //вернуть подключение
             return _connection;
         }
-
         private SqlConnection CloseConnection()
         {
             if (_connection != null && _connection.State != ConnectionState.Closed)
                 _connection.Close();
             return _connection;
         }
-
         public string GetConnectionQueryString()
         {
             var query = WindowsAuthentication
@@ -121,8 +110,7 @@ namespace AlgoritmRassh
             query = query.Replace("PSWXXXXX", Password);
             if (NetworkLibraryDBMSSOCN) query = query + "Network Library=DBMSSOCN";
             return query;
-        }        
-
+        }
         /// <summary>
         /// Прочитать строку из XML-файла
         /// </summary>

@@ -10,13 +10,11 @@ namespace AlgoritmRassh
     {
         public string colorSvetofor;
         public int metricDistance;
-
         public VelocityRestrictionSvetofor(double valueVelocity, string type, string colorSvetofor, int metricDistance) : base(valueVelocity, type)
         {
             this.colorSvetofor = colorSvetofor;
             this.metricDistance = metricDistance;
         }
-
         public override bool check()
         {
             Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");

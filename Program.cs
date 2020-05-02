@@ -78,7 +78,6 @@ namespace AlgoritmRassh
                 valueVelocity = 18
             }
         };
-
         static public void allNecessaryParamsFoundOrException(string eventName)
         {
             if (!Program.checkNecessaryParams(eventName))
@@ -88,7 +87,6 @@ namespace AlgoritmRassh
                 throw new Exception(s);
             }
         }
-
         static public void allNecessaryParamsFoundOrException(string eventName, Moment moment)
         {
             if (!Program.checkNecessaryParams(eventName, moment))
@@ -98,7 +96,6 @@ namespace AlgoritmRassh
                 throw new Exception(s);
             }
         }
-
         static public bool checkNecessaryParams(string eventName)
         {
             if (allMoments.Count == 0)
@@ -107,7 +104,6 @@ namespace AlgoritmRassh
             }
             return checkNecessaryParams(eventName, allMoments[allMoments.Count - 1]);
         }
-
         static public bool checkNecessaryParams(string eventName, Moment moment)
         {
             List<string> necessaryParamNames = new List<string>();
@@ -160,7 +156,6 @@ namespace AlgoritmRassh
             }
             return false;
         }
-
         static void getFile()
         {
             string FileName = "data.xml";
@@ -185,11 +180,5 @@ namespace AlgoritmRassh
                 Console.WriteLine("Файл настроек присутствует");
             }
         }
-    }
-
-    class Reflection
-    {
-        public string a;
-        public string b;
     }
 }
