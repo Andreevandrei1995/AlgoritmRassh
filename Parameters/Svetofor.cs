@@ -16,6 +16,7 @@ namespace AlgoritmRassh
 
         public Svetofor(Coordinate coordinate, string name)
         {
+            Program.allNecessaryParamsFoundOrException("svetofor");
             this.coordinate = coordinate;
             this.name = name;
 

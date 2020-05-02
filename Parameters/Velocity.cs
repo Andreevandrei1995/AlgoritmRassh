@@ -10,11 +10,12 @@ namespace AlgoritmRassh
     {
         public bool exist { get; set; }
 
-        public double velocity;
+        public double value;
 
-        public Velocity(double velocity)
+        public Velocity(double velocityValue)
         {
-            this.velocity = velocity;
+            Program.allNecessaryParamsFoundOrException("velocity");
+            this.value = velocityValue;
             this.exist = true;
         }
     }

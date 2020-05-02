@@ -18,6 +18,7 @@ namespace AlgoritmRassh
 
         public Coordinate(string km, int pk, int m)
         {
+            //Program.allNecessaryParamsFoundOrException("coordinate");
             this.km = km;
             this.pk = pk;
             this.m = m;

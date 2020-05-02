@@ -11,16 +11,83 @@ namespace AlgoritmRassh
 {
     class Program
     {
+        static void Main(string[] args)
+        {
+            foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
+            {
+                Moment newMoment = new Moment();
+                allMoments.Add(newMoment);
+                lastMoment = newMoment;
+                newMoment.init(initialParamsForOneMoment);
+            }            
+        }
+
+        static public List<Moment> allMoments = new List<Moment>();
+        static public Moment lastMoment = null;
+        static public List<Object> allVelocityRestrictions = new List<Object>()
+        {
+            new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400)
+        };
+
         static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
         {
-            new KeyValuePair<string, string>("prevyshenieSkorosti","coordinate"),
+            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "coordinate"),
+            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
+            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locosvetofor"),
+
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "coordinate"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "locoSvetofor"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "velocity"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "svetofor"),
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "allVelocityRestrictions")
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
         };
 
-        static bool checkNecessaryParams (string eventName, Moment moment)
+        static public List<InitialParamsForOneMoment> allInitialParams = new List<InitialParamsForOneMoment>()
+        {
+            new InitialParamsForOneMoment()
+            {
+                kmCoordinate = "5",
+                pkCoordinate = 3,
+                mCoordiante = 52,
+                colorLocoSvetofor = "КЖ",
+                nameSvetofor = "m3",
+                kmSvetofor = "5",
+                pkSvetofor = 7,
+                mSvetofor = 36,
+                valueVelocity = 25
+            }
+        };
+
+        static public void allNecessaryParamsFoundOrException (string eventName)
+        {
+            if (!Program.checkNecessaryParams(eventName))
+            {
+                string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
+                Console.WriteLine(s);
+                throw new Exception(s);
+            }
+        }
+
+        static public void allNecessaryParamsFoundOrException(string eventName, Moment moment)
+        {
+            if (!Program.checkNecessaryParams(eventName, moment))
+            {
+                string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
+                Console.WriteLine(s);
+                throw new Exception(s);
+            }
+        }
+
+        static public bool checkNecessaryParams (string eventName)
+        {
+            if (allMoments.Count == 0)
+            {
+                return false;
+            }
+            return checkNecessaryParams(eventName, allMoments[allMoments.Count - 1]);
+        }
+
+        static public bool checkNecessaryParams (string eventName, Moment moment)
         {
             List<string> necessaryParamNames = new List<string>();
             foreach(KeyValuePair<string,string> dependency in dependencies) {
@@ -60,13 +127,7 @@ namespace AlgoritmRassh
                 {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
-                }
-                InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
-                if (!interfaceExist.exist)
-                {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет поле exist равное false.");
-                   continue;
-                }
+                }                
                 quantityFoundNecessaryParams++;
             }
 
@@ -75,29 +136,6 @@ namespace AlgoritmRassh
             }
             return false;
         }
-
-
-        static void Main(string[] args)
-        {
-            Velocity velocity = new Velocity(12);
-            Console.WriteLine(velocity.exist);
-            InterfaceExist interface2 = velocity;
-            interface2.exist = false;
-            Console.WriteLine(velocity.exist);
-            Console.WriteLine(interface2.GetType());
-            Console.WriteLine(interface2 is Velocity);
-        //getFile();
-        //Reflection reflection = new Reflection
-        //{
-        //    a = "5",
-        //    b = "6"
-        //};
-        //Type type = typeof(Reflection);
-        //FieldInfo fieldInfo = type.GetField("a");
-        //Console.WriteLine(fieldInfo.GetValue(reflection).GetType());
-        //Console.WriteLine(fieldInfo.GetValue(reflection));
-        //string a = null;
-    }
 
         static void getFile()
         {

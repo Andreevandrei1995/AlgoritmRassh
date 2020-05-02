@@ -17,6 +17,7 @@ namespace AlgoritmRassh
 
         public LocoSvetofor(string color)
         {
+            Program.allNecessaryParamsFoundOrException("locoSvetofor");
             this.color = color;
 
             this.exist = true;
