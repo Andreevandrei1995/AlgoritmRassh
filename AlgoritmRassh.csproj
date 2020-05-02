@@ -45,22 +45,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBConnections\AccessDBConnection.cs" />
-    <Compile Include="Events\PrevyshenieSkorosti.cs" />
-    <Compile Include="Formulations\Formulation.cs" />
+    <Compile Include="MomentFields\Events\PrevyshenieSkorosti.cs" />
+    <Compile Include="MomentFields\Formulations\Formulation.cs" />
     <Compile Include="InitialParamsForOneMoment.cs" />
-    <Compile Include="InterfaceExist.cs" />
-    <Compile Include="Parameters\AllActiveVelocityRestrictions.cs" />
-    <Compile Include="Parameters\Coordinate.cs" />
+    <Compile Include="BaseClassesAndInterfaces\InterfaceExist.cs" />
+    <Compile Include="MomentFields\Parameters\AllActiveVelocityRestrictions.cs" />
+    <Compile Include="BaseClassesAndInterfaces\Coordinate.cs" />
     <Compile Include="DBConnections\DBConnection.cs" />
-    <Compile Include="Parameters\CurrentCoordinate.cs" />
-    <Compile Include="Parameters\LocoSvetofor.cs" />
+    <Compile Include="MomentFields\Parameters\CurrentCoordinate.cs" />
+    <Compile Include="MomentFields\Parameters\LocoSvetofor.cs" />
     <Compile Include="Moment.cs" />
-    <Compile Include="Parameters\Svetofor.cs" />
-    <Compile Include="Parameters\VelocityRestrictions\VelocityRestriction.cs" />
-    <Compile Include="Parameters\VelocityRestrictions\VelocityRestrictionSvetofor.cs" />
+    <Compile Include="MomentFields\Parameters\Svetofor.cs" />
+    <Compile Include="BaseClassesAndInterfaces\VelocityRestrictions\VelocityRestriction.cs" />
+    <Compile Include="BaseClassesAndInterfaces\VelocityRestrictions\VelocityRestrictionSvetofor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Parameters\Velocity.cs" />
+    <Compile Include="BaseClassesAndInterfaces\Velocity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
