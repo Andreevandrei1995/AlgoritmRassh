@@ -52,6 +52,7 @@
     <Compile Include="Parameters\AllActiveVelocityRestrictions.cs" />
     <Compile Include="Parameters\Coordinate.cs" />
     <Compile Include="DBConnections\DBConnection.cs" />
+    <Compile Include="Parameters\CurrentCoordinate.cs" />
     <Compile Include="Parameters\LocoSvetofor.cs" />
     <Compile Include="Moment.cs" />
     <Compile Include="Parameters\Svetofor.cs" />

@@ -19,7 +19,7 @@ namespace AlgoritmRassh
                 allMoments.Add(newMoment);
                 lastMoment = newMoment;
                 newMoment.init(initialParamsForOneMoment);
-            }            
+            }
         }
 
         static public List<Moment> allMoments = new List<Moment>();
@@ -31,14 +31,11 @@ namespace AlgoritmRassh
 
         static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
         {
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "coordinate"),
+            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "coordinate"),
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "locoSvetofor"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "velocity"),
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "svetofor"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
         };
 
@@ -82,7 +79,7 @@ namespace AlgoritmRassh
             }
         };
 
-        static public void allNecessaryParamsFoundOrException (string eventName)
+        static public void allNecessaryParamsFoundOrException(string eventName)
         {
             if (!Program.checkNecessaryParams(eventName))
             {
@@ -102,7 +99,7 @@ namespace AlgoritmRassh
             }
         }
 
-        static public bool checkNecessaryParams (string eventName)
+        static public bool checkNecessaryParams(string eventName)
         {
             if (allMoments.Count == 0)
             {
@@ -111,10 +108,11 @@ namespace AlgoritmRassh
             return checkNecessaryParams(eventName, allMoments[allMoments.Count - 1]);
         }
 
-        static public bool checkNecessaryParams (string eventName, Moment moment)
+        static public bool checkNecessaryParams(string eventName, Moment moment)
         {
             List<string> necessaryParamNames = new List<string>();
-            foreach(KeyValuePair<string,string> dependency in dependencies) {
+            foreach (KeyValuePair<string, string> dependency in dependencies)
+            {
                 if (dependency.Key == eventName)
                 {
                     necessaryParamNames.Add(dependency.Value);
@@ -137,7 +135,8 @@ namespace AlgoritmRassh
                     continue;
                 }
                 var fieldValue = fieldInfo.GetValue(moment);
-                if (!(fieldValue is Object)) {
+                if (!(fieldValue is Object))
+                {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
                     continue;
                 }
@@ -151,11 +150,12 @@ namespace AlgoritmRassh
                 {
                     Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
-                }               
+                }
                 quantityFoundNecessaryParams++;
             }
 
-            if (quantityFoundNecessaryParams == necessaryParamNames.Count) {
+            if (quantityFoundNecessaryParams == necessaryParamNames.Count)
+            {
                 return true;
             }
             return false;

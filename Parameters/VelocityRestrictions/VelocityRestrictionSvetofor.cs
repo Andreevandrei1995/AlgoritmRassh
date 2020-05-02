@@ -21,7 +21,7 @@ namespace AlgoritmRassh
         {
             Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
             Moment moment = Program.lastMoment;
-            if (moment.svetofor.coordinate.GetMetricCoord() - moment.coordinate.GetMetricCoord() > this.metricDistance)
+            if (moment.svetofor.coordinate.GetMetricCoord() - moment.currentCoordinate.GetMetricCoord() > this.metricDistance)
             {
                 return false;
             }

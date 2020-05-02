@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class LocoSvetofor : InterfaceExist
+    class CurrentCoordinate : Coordinate, InterfaceExist
     {
         public bool exist { get; set; }
-        
-        public string color;
 
-        public LocoSvetofor(string color)
+        public CurrentCoordinate(string km, int pk, int m) : base(km, pk, m)
         {
-            Program.allNecessaryParamsFoundOrException("locoSvetofor");
-            this.color = color;
+            Program.allNecessaryParamsFoundOrException("currentCoordinate");
             this.exist = true;
         }
     }

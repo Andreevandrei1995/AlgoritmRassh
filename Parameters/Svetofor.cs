@@ -19,7 +19,6 @@ namespace AlgoritmRassh
             Program.allNecessaryParamsFoundOrException("svetofor");
             this.coordinate = coordinate;
             this.name = name;
-
             this.exist = true;
         }
     }

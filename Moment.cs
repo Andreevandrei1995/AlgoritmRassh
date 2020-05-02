@@ -10,7 +10,7 @@ namespace AlgoritmRassh
 {
     class Moment
     {
-        public Coordinate coordinate;
+        public CurrentCoordinate currentCoordinate;
         public LocoSvetofor locoSvetofor;
         public Svetofor svetofor;
         public Velocity velocity;
@@ -19,7 +19,7 @@ namespace AlgoritmRassh
 
         public Moment()
         {
-            this.coordinate = null;
+            this.currentCoordinate = null;
             this.locoSvetofor = null;
             this.svetofor = null;
             this.velocity = null;
@@ -33,11 +33,11 @@ namespace AlgoritmRassh
             int quantityCycles = 0;
             while (!this.checkAllFieldsAreInitialized() && quantityCycles < maxCycles)
             {
-                if (this.coordinate == null)
+                if (this.currentCoordinate == null)
                 {
                     try
                     {
-                        this.coordinate = new Coordinate(initialParams.kmCoordinate, initialParams.pkCoordinate, initialParams.mCoordiante);
+                        this.currentCoordinate = new CurrentCoordinate(initialParams.kmCoordinate, initialParams.pkCoordinate, initialParams.mCoordiante);
                     }
                     catch (Exception e)
                     {
