@@ -31,7 +31,7 @@ namespace AlgoritmRassh
         {            
             int maxCycles = 100;
             int quantityCycles = 0;
-            while (this.checkAllFieldsAreInitialized() && quantityCycles < maxCycles)
+            while (!this.checkAllFieldsAreInitialized() && quantityCycles < maxCycles)
             {
                 if (this.coordinate == null)
                 {
