@@ -9,11 +9,8 @@ namespace AlgoritmRassh
     class Svetofor : InterfaceExist
     {
         public bool exist { get; set; }
-
         public string name;
-
         public Coordinate coordinate;
-
         public Svetofor(Coordinate coordinate, string name)
         {
             Program.allNecessaryParamsFoundOrException("svetofor");

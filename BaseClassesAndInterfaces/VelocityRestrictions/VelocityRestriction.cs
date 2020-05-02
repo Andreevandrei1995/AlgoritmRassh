@@ -8,15 +8,15 @@ namespace AlgoritmRassh
 {
     abstract class VelocityRestriction
     {
-        public double velocity;
+        public Velocity velocity;
 
         public string type;
 
         abstract public bool check();
 
-        public VelocityRestriction(double velocity, string type)
+        public VelocityRestriction(double valueVelocity, string type)
         {            
-            this.velocity = velocity;
+            this.velocity = new Velocity(valueVelocity);
             this.type = type;
         }
     }

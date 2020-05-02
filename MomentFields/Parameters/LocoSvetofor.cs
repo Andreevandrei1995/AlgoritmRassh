@@ -8,10 +8,8 @@ namespace AlgoritmRassh
 {
     class LocoSvetofor : InterfaceExist
     {
-        public bool exist { get; set; }
-        
+        public bool exist { get; set; }        
         public string color;
-
         public LocoSvetofor(string color)
         {
             Program.allNecessaryParamsFoundOrException("locoSvetofor");

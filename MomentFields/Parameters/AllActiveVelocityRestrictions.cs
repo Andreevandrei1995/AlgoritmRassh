@@ -11,7 +11,6 @@ namespace AlgoritmRassh
     {
         public bool exist { get; set; }
         public List<Object> list;
-
         public AllActiveVelocityRestrictions()
         {
             if (!AllActiveVelocityRestrictions.isAllRestrictionsCanBeChecked())
@@ -27,7 +26,6 @@ namespace AlgoritmRassh
                 this.Add(velocityRestriction);
             }
         }
-
         public void Add (Object velocityRestriction)
         {
             if (!(velocityRestriction is VelocityRestriction && velocityRestriction != null)) 
@@ -41,7 +39,6 @@ namespace AlgoritmRassh
                 this.exist = true;
             }
         }
-
         public static bool isAllRestrictionsCanBeChecked()
         {
             

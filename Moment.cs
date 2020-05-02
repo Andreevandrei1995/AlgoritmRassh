@@ -13,7 +13,7 @@ namespace AlgoritmRassh
         public CurrentCoordinate currentCoordinate;
         public LocoSvetofor locoSvetofor;
         public Svetofor svetofor;
-        public Velocity velocity;
+        public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
         public PrevyshenieSkorosti prevyshenieSkorosti;
 
@@ -22,7 +22,7 @@ namespace AlgoritmRassh
             this.currentCoordinate = null;
             this.locoSvetofor = null;
             this.svetofor = null;
-            this.velocity = null;
+            this.currentVelocity = null;
             this.allActiveVelocityRestrictions = null;
             this.prevyshenieSkorosti = null;
         }
@@ -66,11 +66,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.velocity == null)
+                if (this.currentVelocity == null)
                 {
                     try
                     {
-                        this.velocity = new Velocity(initialParams.valueVelocity);
+                        this.currentVelocity = new CurrentVelocity(initialParams.valueVelocity);
                     }
                     catch (Exception e)
                     {

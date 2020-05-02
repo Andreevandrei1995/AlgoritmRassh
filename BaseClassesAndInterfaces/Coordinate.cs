@@ -9,18 +9,14 @@ namespace AlgoritmRassh
     class Coordinate
     {
         public string km;
-
         public int pk;
-
         public int m;
-
         public Coordinate(string km, int pk, int m)
         {
             this.km = km;
             this.pk = pk;
             this.m = m;
         }
-
         public int GetMetricCoord()
         {
             return Int32.Parse(this.km) * 1000 + pk * 100 + m;

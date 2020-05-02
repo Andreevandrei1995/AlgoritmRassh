@@ -25,6 +25,7 @@ namespace AlgoritmRassh
 
         #endregion Данные
 
+        #region Методы
         /// <summary>
         /// Конструктор соединения
         /// </summary>
@@ -61,8 +62,7 @@ namespace AlgoritmRassh
                 _connection.Close();
             return _connection;
         }
-
-        #region Методы
+        
         public string GetConnectionQueryString()
         {
             return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName;

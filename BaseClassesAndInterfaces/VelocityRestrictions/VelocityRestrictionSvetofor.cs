@@ -11,7 +11,7 @@ namespace AlgoritmRassh
         public string colorSvetofor;
         public int metricDistance;
 
-        public VelocityRestrictionSvetofor(double velocity, string type, string colorSvetofor, int metricDistance) : base(velocity, type)
+        public VelocityRestrictionSvetofor(double valueVelocity, string type, string colorSvetofor, int metricDistance) : base(valueVelocity, type)
         {
             this.colorSvetofor = colorSvetofor;
             this.metricDistance = metricDistance;

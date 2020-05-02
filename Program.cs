@@ -35,7 +35,7 @@ namespace AlgoritmRassh
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "velocity"),
+            new KeyValuePair<string, string>("prevyshenieSkorosti", "currentVelocity"),
             new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
         };
 
