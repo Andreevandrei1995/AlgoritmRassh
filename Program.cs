@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +14,7 @@ namespace AlgoritmRassh
     {
         static void Main(string[] args)
         {
+            getDependenciesFromDB();
             foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
             {
                 Moment newMoment = new Moment();
@@ -29,15 +31,15 @@ namespace AlgoritmRassh
             new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400)
         };
 
-        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
-        {
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
+        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
+        //{
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "currentVelocity"),
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
-        };
+        //    new KeyValuePair<string, string>("prevyshenieSkorosti", "currentVelocity"),
+        //    new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
+        //};
 
         static public List<InitialParamsForOneMoment> allInitialParams = new List<InitialParamsForOneMoment>()
         {
@@ -156,29 +158,38 @@ namespace AlgoritmRassh
             }
             return false;
         }
-        static void getFile()
+
+        static void getDependenciesFromDB()
         {
-            string FileName = "data.xml";
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml("<item><name>wrench</name></item>");
-
-            // Add a price element.
-            XmlElement newElem = doc.CreateElement("price");
-            newElem.InnerText = "10.95";
-            doc.DocumentElement.AppendChild(newElem);
-
-            // Save the document to a file. White space is
-            // preserved (no white space).
-            doc.PreserveWhitespace = true;
-            doc.Save(FileName);
-            if (!File.Exists(FileName))
+            string fileName = "DBViolationAlgoritm.mdb";
+            AccessDBConnection accessDBConnection = new AccessDBConnection(fileName);
+            accessDBConnection.OpenConnection();
+            string script = @"SELECT Obj.Name, DepObj.Name
+                FROM (Dependencies 
+                INNER JOIN Objects AS Obj 
+                ON Dependencies.ObjectID = Obj.ID) 
+                INNER JOIN Objects AS DepObj 
+                ON Dependencies.DependentObjectID = DepObj.ID ";
+            OleDbCommand command = new OleDbCommand(script, accessDBConnection._connection);
+            try
             {
-                Console.WriteLine("Файл настроек отсутствует");
+                OleDbDataReader reader = command.ExecuteReader();
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                    Console.WriteLine("В БД нет данных.");
+                }
+                while (reader.Read())
+                {
+                    dependencies.Add(new KeyValuePair<string, string>(reader.GetString(0), reader.GetString(1)));
+                }
+                reader.Close();
+                reader = null;
             }
-            else
+            catch (Exception e)
             {
-                Console.WriteLine("Файл настроек присутствует");
-            }
+                Console.WriteLine("Не удалось прочитать саблицу зависимостей из БД");
+            }            
         }
     }
 }

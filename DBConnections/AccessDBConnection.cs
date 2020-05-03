@@ -38,7 +38,7 @@ namespace AlgoritmRassh
                 throw new Exception("Отсутствует файл БД " + accessDbFileName);
             }
         }
-        private OleDbConnection OpenConnection()
+        public OleDbConnection OpenConnection()
         {            
             this._connection = new OleDbConnection(GetConnectionQueryString());            
             if (_connection != null && _connection.State != ConnectionState.Open)

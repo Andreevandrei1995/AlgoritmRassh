@@ -5,3 +5,11 @@ C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRa
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.exe
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\obj\Debug\AlgoritmRassh.pdb
 C:\Users\USER\Desktop\Работа (Вика)\AlgoritmRassh\bin\Debug\DBConnections\DBViolationAlgoritm.mdb
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\bin\Debug\DBConnections\DBViolationAlgoritm.mdb
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\bin\Debug\AlgoritmRassh.exe.config
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\bin\Debug\AlgoritmRassh.exe
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\bin\Debug\AlgoritmRassh.pdb
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\obj\Debug\AlgoritmRassh.csprojResolveAssemblyReference.cache
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\obj\Debug\AlgoritmRassh.csproj.CoreCompileInputs.cache
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\obj\Debug\AlgoritmRassh.exe
+D:\Work\Алгоритмы расшифровки\AlgoritmRassh\obj\Debug\AlgoritmRassh.pdb

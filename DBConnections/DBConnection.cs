@@ -72,7 +72,7 @@ namespace AlgoritmRassh
             }
             NetworkLibraryDBMSSOCN = (GetAttributeValueFromXml(xmlNode, "NetworkLibraryDBMSSOCN", "0") == "1");
         }
-        private SqlConnection OpenConnection()
+        public SqlConnection OpenConnection()
         {
             this._connection = new SqlConnection(GetConnectionQueryString());
             if (_connection != null && _connection.State != ConnectionState.Open)
