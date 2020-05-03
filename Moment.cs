@@ -10,14 +10,16 @@ namespace AlgoritmRassh
 {
     class Moment
     {
+        public int index { get; set; }
         public CurrentCoordinate currentCoordinate;
         public LocoSvetofor locoSvetofor;
         public Svetofor svetofor;
         public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
         public AllActiveVelocityExcesses allActiveVelocityExcesses;
-        public Moment()
+        public Moment(int index)
         {
+            this.index = index;
             this.currentCoordinate = null;
             this.locoSvetofor = null;
             this.svetofor = null;

@@ -17,7 +17,7 @@ namespace AlgoritmRassh
             Moment previousMoment = Program.previousMoment;
 
             this.list = new List<VelocityExcess>();
-            List<VelocityExcess> listFromPreviousMoment = null;
+            List<VelocityExcess> listFromPreviousMoment = new List<VelocityExcess>();
             if (previousMoment != null && previousMoment.allActiveVelocityExcesses.exist == true) {
                 listFromPreviousMoment = previousMoment.allActiveVelocityExcesses.list;
             }
@@ -33,17 +33,15 @@ namespace AlgoritmRassh
                         if (velocityRestriction == previousMomentVelocityExcess.velocityRestriction)
                         {
                             //Добавление уже действующего превышения скорости
-                            this.list.Add(previousMomentVelocityExcess);
-                            this.exist = true;
-                            break;
-                        }
-                        if (listFromPreviousMoment.IndexOf(previousMomentVelocityExcess) == listFromPreviousMoment.Count - 1)
-                        {
-                            //Добавление нового превышения скорости
-                            this.list.Add(new VelocityExcess(thisMoment, velocityRestriction));
-                            this.exist = true;
-                        }
+                            this.list.Add(previousMomentVelocityExcess);                            
+                            goto endIf;
+                        }                        
                     }
+                    //Добавление нового превышения скорости
+                    this.list.Add(new VelocityExcess(thisMoment, velocityRestriction));
+
+                    endIf:
+                    this.exist = true;
                 }                
             }
             //Проставляем endMoment для превышений скорости, которые закончились в предыдущий момент (в этот момент для них уже нет нарушений)
