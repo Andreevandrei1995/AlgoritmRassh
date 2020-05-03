@@ -17,6 +17,7 @@ namespace AlgoritmRassh
         public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
         public AllActiveVelocityExcesses allActiveVelocityExcesses;
+        public Formulation formulation;
         public Moment(int index)
         {
             this.index = index;
@@ -26,6 +27,7 @@ namespace AlgoritmRassh
             this.currentVelocity = null;
             this.allActiveVelocityRestrictions = null;
             this.allActiveVelocityExcesses = null;
+            this.formulation = null;
         }
         public void init(InitialParamsForOneMoment initialParams)
         {            
@@ -93,6 +95,17 @@ namespace AlgoritmRassh
                     try
                     {
                         this.allActiveVelocityExcesses = new AllActiveVelocityExcesses();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                if (this.formulation == null)
+                {
+                    try
+                    {
+                        this.formulation = new Formulation();
                     }
                     catch (Exception e)
                     {
