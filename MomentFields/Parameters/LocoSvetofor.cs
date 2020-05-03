@@ -13,7 +13,7 @@ namespace AlgoritmRassh
         public LocoSvetofor(string color)
         {
             Program.allNecessaryParamsFoundOrException("locoSvetofor");
-            Moment moment = Program.lastMoment;
+            Moment thisMoment = Program.lastMoment;
             this.color = color;
             this.exist = true;
         }

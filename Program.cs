@@ -16,15 +16,17 @@ namespace AlgoritmRassh
             foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
             {
                 Moment newMoment = new Moment();
-                allMoments.Add(newMoment);
-                lastMoment = newMoment;
+                Program.allMoments.Add(newMoment);
+                Program.lastMoment = newMoment;
+                Program.previousMoment = Program.allMoments.Count > 1 ? Program.allMoments[Program.allMoments.Count - 2] : null;                
                 newMoment.init(initialParamsForOneMoment);
             }
         }
 
         static public List<Moment> allMoments = new List<Moment>();
         static public Moment lastMoment = null;
-        static public List<Object> allVelocityRestrictions = new List<Object>()
+        static public Moment previousMoment = null;
+        static public List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>()
         {
             new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400)
         };
@@ -35,8 +37,10 @@ namespace AlgoritmRassh
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "currentVelocity"),
-            new KeyValuePair<string, string>("prevyshenieSkorosti", "allActiveVelocityRestrictions")
+            new KeyValuePair<string, string>("allActiveVelocityExcesses", "currentVelocity"),
+            new KeyValuePair<string, string>("allActiveVelocityExcesses", "allActiveVelocityRestrictions"),
+
+            new KeyValuePair<string, string>("formulation", "allActiveVelocityExcesses")
         };
 
         static public List<InitialParamsForOneMoment> allInitialParams = new List<InitialParamsForOneMoment>()

@@ -15,7 +15,7 @@ namespace AlgoritmRassh
         public Svetofor svetofor;
         public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
-        public PrevyshenieSkorosti prevyshenieSkorosti;
+        public AllActiveVelocityExcesses allActiveVelocityExcesses;
         public Moment()
         {
             this.currentCoordinate = null;
@@ -23,7 +23,7 @@ namespace AlgoritmRassh
             this.svetofor = null;
             this.currentVelocity = null;
             this.allActiveVelocityRestrictions = null;
-            this.prevyshenieSkorosti = null;
+            this.allActiveVelocityExcesses = null;
         }
         public void init(InitialParamsForOneMoment initialParams)
         {            
@@ -86,11 +86,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.prevyshenieSkorosti == null)
+                if (this.allActiveVelocityExcesses == null)
                 {
                     try
                     {
-                        this.prevyshenieSkorosti = new PrevyshenieSkorosti();
+                        this.allActiveVelocityExcesses = new AllActiveVelocityExcesses();
                     }
                     catch (Exception e)
                     {
