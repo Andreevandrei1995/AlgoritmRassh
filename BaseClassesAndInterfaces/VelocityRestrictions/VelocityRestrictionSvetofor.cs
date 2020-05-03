@@ -18,12 +18,12 @@ namespace AlgoritmRassh
         public override bool check()
         {
             Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
-            Moment moment = Program.lastMoment;
-            if (moment.svetofor.coordinate.GetMetricCoord() - moment.currentCoordinate.GetMetricCoord() > this.metricDistance)
+            Moment thisMoment = Program.lastMoment;
+            if (thisMoment.svetofor.coordinate.GetMetricCoord() - thisMoment.currentCoordinate.GetMetricCoord() > this.metricDistance)
             {
                 return false;
             }
-            if (moment.locoSvetofor.color != this.colorSvetofor)
+            if (thisMoment.locoSvetofor.color != this.colorSvetofor)
             {
                 return false;
             }

@@ -12,7 +12,7 @@ namespace AlgoritmRassh
         public CurrentCoordinate(string km, int pk, int m) : base(km, pk, m)
         {
             Program.allNecessaryParamsFoundOrException("currentCoordinate");
-            Moment moment = Program.lastMoment;
+            Moment thisMoment = Program.lastMoment;
             this.exist = true;
         }
     }

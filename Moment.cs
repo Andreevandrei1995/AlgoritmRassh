@@ -10,20 +10,22 @@ namespace AlgoritmRassh
 {
     class Moment
     {
+        public int index { get; set; }
         public CurrentCoordinate currentCoordinate;
         public LocoSvetofor locoSvetofor;
         public Svetofor svetofor;
         public CurrentVelocity currentVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
-        public PrevyshenieSkorosti prevyshenieSkorosti;
-        public Moment()
+        public AllActiveVelocityExcesses allActiveVelocityExcesses;
+        public Moment(int index)
         {
+            this.index = index;
             this.currentCoordinate = null;
             this.locoSvetofor = null;
             this.svetofor = null;
             this.currentVelocity = null;
             this.allActiveVelocityRestrictions = null;
-            this.prevyshenieSkorosti = null;
+            this.allActiveVelocityExcesses = null;
         }
         public void init(InitialParamsForOneMoment initialParams)
         {            
@@ -86,11 +88,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.prevyshenieSkorosti == null)
+                if (this.allActiveVelocityExcesses == null)
                 {
                     try
                     {
-                        this.prevyshenieSkorosti = new PrevyshenieSkorosti();
+                        this.allActiveVelocityExcesses = new AllActiveVelocityExcesses();
                     }
                     catch (Exception e)
                     {

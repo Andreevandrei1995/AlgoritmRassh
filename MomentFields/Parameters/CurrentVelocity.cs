@@ -12,7 +12,7 @@ namespace AlgoritmRassh
         public CurrentVelocity(double value) : base(value)
         {
             Program.allNecessaryParamsFoundOrException("currentVelocity");
-            Moment moment = Program.lastMoment;
+            Moment thisMoment = Program.lastMoment;
             this.exist = true;
         }
     }

@@ -10,16 +10,16 @@ namespace AlgoritmRassh
     class AllActiveVelocityRestrictions : InterfaceExist 
     {
         public bool exist { get; set; }
-        public List<Object> list;
+        public List<VelocityRestriction> list;
         public AllActiveVelocityRestrictions()
         {
             if (!AllActiveVelocityRestrictions.areAllRestrictionsInitialized())
             {
                 throw new Exception("Не все ограничения могут быть проверены.");
             }
-            this.list = new List<Object>();
+            this.list = new List<VelocityRestriction>();
             this.exist = false;
-            List<Object> allVelocityRestrictions = new List<Object>(Program.allVelocityRestrictions);
+            List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);
             foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
             {
                 if (velocityRestriction.check())
@@ -31,11 +31,11 @@ namespace AlgoritmRassh
         }
         public static bool areAllRestrictionsInitialized()
         {
-            List<Object> allVelocityRestrictions = new List<Object>(Program.allVelocityRestrictions);      
+            List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);      
             foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
             {
                 //Exception может выскочить при попытке проверить все необходимые элементы для проверки ограничения на факт,
-                //что оно является активным в данный moment
+                //что оно является активным в данный thisMoment
                 try
                 {
                     velocityRestriction.check();

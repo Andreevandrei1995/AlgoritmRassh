@@ -14,7 +14,7 @@ namespace AlgoritmRassh
         public Svetofor(string km, int pk, int m, string name)
         {
             Program.allNecessaryParamsFoundOrException("svetofor");
-            Moment moment = Program.lastMoment;
+            Moment thisMoment = Program.lastMoment;
             this.coordinate = new Coordinate(km, pk, m);
             this.name = name;
             this.exist = true;
