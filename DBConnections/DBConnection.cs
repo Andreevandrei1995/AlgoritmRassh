@@ -85,7 +85,7 @@ namespace AlgoritmRassh
             //вернуть подключение
             return _connection;
         }
-        private SqlConnection CloseConnection()
+        public SqlConnection CloseConnection()
         {
             if (_connection != null && _connection.State != ConnectionState.Closed)
                 _connection.Close();

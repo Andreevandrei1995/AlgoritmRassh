@@ -14,7 +14,7 @@ namespace AlgoritmRassh
     {
         static void Main(string[] args)
         {
-            //getDependenciesFromDB();
+            getDependenciesFromDB();
             foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
             {
                 Moment newMoment = new Moment(Program.allInitialParams.IndexOf(initialParamsForOneMoment));
@@ -33,17 +33,17 @@ namespace AlgoritmRassh
             new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400)
         };
 
-        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
-        {
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
+        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
+        //{
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
 
-            new KeyValuePair<string, string>("allActiveVelocityExcesses", "currentVelocity"),
-            new KeyValuePair<string, string>("allActiveVelocityExcesses", "allActiveVelocityRestrictions"),
+        //    new KeyValuePair<string, string>("allActiveVelocityExcesses", "currentVelocity"),
+        //    new KeyValuePair<string, string>("allActiveVelocityExcesses", "allActiveVelocityRestrictions"),
 
-            new KeyValuePair<string, string>("formulation", "allActiveVelocityExcesses")
-        };
+        //    new KeyValuePair<string, string>("formulation", "allActiveVelocityExcesses")
+        //};
 
         static public List<InitialParamsForOneMoment> allInitialParams = new List<InitialParamsForOneMoment>()
         {
@@ -165,7 +165,7 @@ namespace AlgoritmRassh
 
         static void getDependenciesFromDB()
         {
-            string fileName = "DBViolationAlgoritm.mdb";
+            string fileName = "DBConnections\\DBViolationAlgoritm.mdb";
             AccessDBConnection accessDBConnection = new AccessDBConnection(fileName);
             accessDBConnection.OpenConnection();
             string script = @"SELECT Obj.Name, DepObj.Name
@@ -193,7 +193,8 @@ namespace AlgoritmRassh
             catch (Exception e)
             {
                 Console.WriteLine("Не удалось прочитать саблицу зависимостей из БД");
-            }            
+            }
+            accessDBConnection.CloseConnection();
         }
     }
 }

@@ -29,7 +29,8 @@ namespace AlgoritmRassh
         /// <param name="accessDbFileName"></param>
         public AccessDBConnection(string accessDbFileName)
         {
-            if (!File.Exists(accessDbFileName))
+            string path = Directory.GetCurrentDirectory() + "\\" + accessDbFileName;
+            if (File.Exists(path))
             {
                 DataBaseName = accessDbFileName;
             }
@@ -51,7 +52,7 @@ namespace AlgoritmRassh
             //вернуть подключение
             return _connection;
         }
-        private OleDbConnection CloseConnection()
+        public OleDbConnection CloseConnection()
         {
             if (_connection != null && _connection.State != ConnectionState.Closed)
                 _connection.Close();
@@ -59,7 +60,7 @@ namespace AlgoritmRassh
         }        
         public string GetConnectionQueryString()
         {
-            return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DataBaseName;
+            return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetCurrentDirectory() + "\\"+ DataBaseName;
         }        
         #endregion Методы
     }
