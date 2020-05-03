@@ -15,14 +15,23 @@ namespace AlgoritmRassh
         static void Main(string[] args)
         {
             //getDependenciesFromDB();
-            foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
+            DateTime begin;
+            DateTime end;
+
+            begin = DateTime.Now;
+            for(int i = 0; i < 10000; i++)
             {
-                Moment newMoment = new Moment(Program.allInitialParams.IndexOf(initialParamsForOneMoment));
-                Program.allMoments.Add(newMoment);
-                Program.lastMoment = newMoment;
-                Program.previousMoment = Program.allMoments.Count > 1 ? Program.allMoments[Program.allMoments.Count - 2] : null;                
-                newMoment.init(initialParamsForOneMoment);
+                foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
+                {
+                    Moment newMoment = new Moment(Program.allInitialParams.IndexOf(initialParamsForOneMoment));
+                    Program.allMoments.Add(newMoment);
+                    Program.lastMoment = newMoment;
+                    Program.previousMoment = Program.allMoments.Count > 1 ? Program.allMoments[Program.allMoments.Count - 2] : null;
+                    newMoment.init(initialParamsForOneMoment);
+                }
             }
+            end = DateTime.Now;
+            Console.WriteLine(end - begin);
         }
 
         static public List<Moment> allMoments = new List<Moment>();
@@ -90,7 +99,7 @@ namespace AlgoritmRassh
             if (!Program.checkNecessaryParams(eventName))
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
-                Console.WriteLine(s);
+                //Console.WriteLine(s);
                 throw new Exception(s);
             }
         }
@@ -99,7 +108,7 @@ namespace AlgoritmRassh
             if (!Program.checkNecessaryParams(eventName, moment))
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
-                Console.WriteLine(s);
+                //Console.WriteLine(s);
                 throw new Exception(s);
             }
         }
@@ -134,24 +143,24 @@ namespace AlgoritmRassh
                 //Метод GetField возвращает null, если поле не найдено в классе
                 if (fieldInfo == null)
                 {
-                    Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
+                    //Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
                     continue;
                 }
                 var fieldValue = fieldInfo.GetValue(moment);
                 if (!(fieldValue is Object))
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
                     continue;
                 }
                 if (fieldValue == null)
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не инициализировано.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не инициализировано.");
                     continue;
                 }
                 //Работаем с полем exist
                 if (!(fieldValue is InterfaceExist))
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     continue;
                 }
                 quantityFoundNecessaryParams++;
@@ -182,7 +191,7 @@ namespace AlgoritmRassh
                 if (!reader.HasRows)
                 {
                     reader.Close();
-                    Console.WriteLine("В БД нет данных.");
+                    //Console.WriteLine("В БД нет данных.");
                 }
                 while (reader.Read())
                 {
@@ -193,7 +202,7 @@ namespace AlgoritmRassh
             }
             catch (Exception e)
             {
-                Console.WriteLine("Не удалось прочитать саблицу зависимостей из БД");
+                //Console.WriteLine("Не удалось прочитать саблицу зависимостей из БД");
             }
             accessDBConnection.CloseConnection();
         }

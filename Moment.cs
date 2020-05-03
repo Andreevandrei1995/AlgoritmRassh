@@ -30,8 +30,10 @@ namespace AlgoritmRassh
             this.formulation = null;
         }
         public void init(InitialParamsForOneMoment initialParams)
-        {            
-            int maxCycles = 100;
+        {
+            Type type = this.GetType();
+            FieldInfo[] allFields = type.GetFields();
+            int maxCycles = allFields.Length;
             int quantityCycles = 0;
             while (!this.checkAllFieldsAreInitialized() && quantityCycles < maxCycles)
             {
@@ -126,18 +128,18 @@ namespace AlgoritmRassh
                 var fieldValue = fieldInfo.GetValue(this);
                 if (!(fieldValue is Object))
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " имеет тип поля не Object.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " имеет тип поля не Object.");
                     continue;
                 }
                 if (fieldValue == null)
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не инициализировано.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не инициализировано.");
                     continue;
                 }
                 //Работаем с полем exist
                 if (!(fieldValue is InterfaceExist))
                 {
-                    Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не наследует интерфейс InterfaceExist.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не наследует интерфейс InterfaceExist.");
                     continue;
                 }
                 quantityFoundNecessaryParams++;
