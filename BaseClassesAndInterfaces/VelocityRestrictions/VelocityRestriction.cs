@@ -10,7 +10,11 @@ namespace AlgoritmRassh
     {
         public Velocity velocity;
         public string type;
-        abstract public bool checkNecessaryParams();
+        abstract public bool checkExisting(Moment moment, bool checkNecessaryParams);
+        public bool checkExisting(bool checkNecessaryParams)
+        {
+            return this.checkExisting(Program.lastMoment, checkNecessaryParams);
+        }
         public VelocityRestriction(double valueVelocity, string type)
         {            
             this.velocity = new Velocity(valueVelocity);

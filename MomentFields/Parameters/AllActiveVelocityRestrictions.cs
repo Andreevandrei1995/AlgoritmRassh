@@ -16,17 +16,17 @@ namespace AlgoritmRassh
             foreach (string necessaryParamName in Program.getListNecessaryParamNames("AllActiveVelocityRestrictions"))
             {
                 Program.allNecessaryParamsFoundOrException(necessaryParamName);
-            }            
+            }
             this.list = new List<VelocityRestriction>();
             this.exist = false;
             List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);
             foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
             {
-                if (velocityRestriction.checkNecessaryParams())
+                if (velocityRestriction.checkExisting(false))
                 {
                     this.list.Add(velocityRestriction);
                     this.exist = true;
-                }                
+                }
             }
         }
     }

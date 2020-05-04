@@ -24,26 +24,29 @@ namespace AlgoritmRassh
             this.exist = false;
             //Добавление превышений скорости
             //Новых или из предыдущего момента при условии, что превышение скорости уже существовало для данного типа ограничения скорости
-            foreach (VelocityRestriction velocityRestriction in thisMoment.allActiveVelocityRestrictions.list)
+            if (thisMoment.allActiveVelocityRestrictions.exist == true && thisMoment.trainVelocity.exist == true)
             {
-                if (thisMoment.trainVelocity.value > velocityRestriction.velocity.value)
+                foreach (VelocityRestriction velocityRestriction in thisMoment.allActiveVelocityRestrictions.list)
                 {
-                    foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
+                    if (thisMoment.trainVelocity.value > velocityRestriction.velocity.value)
                     {
-                        if (velocityRestriction == previousMomentVelocityExcess.velocityRestriction)
+                        foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
                         {
-                            //Добавление уже действующего превышения скорости
-                            this.list.Add(previousMomentVelocityExcess);                            
-                            goto endIf;
-                        }                        
-                    }
-                    //Добавление нового превышения скорости
-                    this.list.Add(new VelocityExcess(thisMoment, velocityRestriction));
+                            if (velocityRestriction == previousMomentVelocityExcess.velocityRestriction)
+                            {
+                                //Добавление уже действующего превышения скорости
+                                this.list.Add(previousMomentVelocityExcess);
+                                goto endIf;
+                            }
+                        }
+                        //Добавление нового превышения скорости
+                        this.list.Add(new VelocityExcess(thisMoment, velocityRestriction));
 
-                    endIf:
-                    this.exist = true;
-                }                
-            }
+                        endIf:
+                        this.exist = true;
+                    }
+                }
+            }            
             //Проставляем endMoment для превышений скорости, которые закончились в предыдущий момент (в этот момент для них уже нет нарушений)
             foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
             {

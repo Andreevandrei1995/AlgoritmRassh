@@ -15,10 +15,17 @@ namespace AlgoritmRassh
             this.colorSvetofor = colorSvetofor;
             this.metricDistance = metricDistance;
         }
-        public override bool checkNecessaryParams()
+        public override bool checkExisting(Moment moment, bool checkNecessaryParams)
         {
-            Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
-            Moment thisMoment = Program.lastMoment;
+            if (checkNecessaryParams)
+            {
+                Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
+            }            
+            Moment thisMoment = moment;
+            if (!(thisMoment.svetofor.exist == true && thisMoment.trainCoordinate.exist == true && thisMoment.trainSvetofor.exist == true))
+            {
+                return false;
+            }
             if (thisMoment.svetofor.coordinate.GetMetricCoord() - thisMoment.trainCoordinate.GetMetricCoord() > this.metricDistance)
             {
                 return false;
