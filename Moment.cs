@@ -35,7 +35,7 @@ namespace AlgoritmRassh
             FieldInfo[] allFields = type.GetFields();
             int maxCycles = allFields.Length;
             int quantityCycles = 0;
-            while (Program.checkNecessaryParams("moment") != Program.NecessaryParamsStatus.NotInitialized && quantityCycles < maxCycles)
+            while (Program.checkNecessaryParams("moment") == Program.NecessaryParamsStatus.NotInitialized && quantityCycles < maxCycles)
             {
                 if (this.currentCoordinate == null)
                 {

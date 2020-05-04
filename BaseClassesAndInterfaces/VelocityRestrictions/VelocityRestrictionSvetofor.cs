@@ -15,7 +15,7 @@ namespace AlgoritmRassh
             this.colorSvetofor = colorSvetofor;
             this.metricDistance = metricDistance;
         }
-        public override bool check()
+        public override bool checkNecessaryParams()
         {
             Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
             Moment thisMoment = Program.lastMoment;

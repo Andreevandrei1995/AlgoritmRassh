@@ -23,7 +23,8 @@ namespace AlgoritmRassh
             {
                 foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
                 {
-                    Moment newMoment = new Moment(Program.allInitialParams.IndexOf(initialParamsForOneMoment));
+                    int index = i * 3 + Program.allInitialParams.IndexOf(initialParamsForOneMoment);
+                    Moment newMoment = new Moment(index);
                     Program.allMoments.Add(newMoment);
                     Program.lastMoment = newMoment;
                     Program.previousMoment = Program.allMoments.Count > 1 ? Program.allMoments[Program.allMoments.Count - 2] : null;

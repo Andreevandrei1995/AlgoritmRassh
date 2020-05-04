@@ -22,7 +22,7 @@ namespace AlgoritmRassh
             List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);
             foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
             {
-                if (velocityRestriction.check())
+                if (velocityRestriction.checkNecessaryParams())
                 {
                     this.list.Add(velocityRestriction);
                     this.exist = true;
@@ -38,7 +38,7 @@ namespace AlgoritmRassh
                 //что оно является активным в данный thisMoment
                 try
                 {
-                    velocityRestriction.check();
+                    velocityRestriction.checkNecessaryParams();
                 }
                 catch (Exception e)
                 {
