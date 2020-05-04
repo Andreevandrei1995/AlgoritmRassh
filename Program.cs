@@ -23,7 +23,7 @@ namespace AlgoritmRassh
             {
                 foreach (InitialParamsForOneMoment initialParamsForOneMoment in Program.allInitialParams)
                 {
-                    int index = i * 3 + Program.allInitialParams.IndexOf(initialParamsForOneMoment);
+                    int index = i * Program.allInitialParams.Count + Program.allInitialParams.IndexOf(initialParamsForOneMoment);
                     Moment newMoment = new Moment(index);
                     Program.allMoments.Add(newMoment);
                     Program.lastMoment = newMoment;
@@ -40,7 +40,8 @@ namespace AlgoritmRassh
         static public Moment previousMoment = null;
         static public List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>()
         {
-            new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400)
+            new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400),
+            new VelocityRestrictionSvetofor(5,"velocityRestrictionSvetofor","КЖ",400)
         };
 
         //static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
@@ -54,10 +55,11 @@ namespace AlgoritmRassh
             new KeyValuePair<string, string>("moment", "allActiveVelocityExcesses"),
             new KeyValuePair<string, string>("moment", "formulation"),
 
-
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainCoordinate"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainSvetofor"),
+
+            new KeyValuePair<string, string>("allActiveVelocityRestrictions", "velocityRestrictionSvetofor"),
 
             new KeyValuePair<string, string>("allActiveVelocityExcesses", "trainVelocity"),
             new KeyValuePair<string, string>("allActiveVelocityExcesses", "allActiveVelocityRestrictions"),
@@ -151,14 +153,7 @@ namespace AlgoritmRassh
         }
         static public Program.NecessaryParamsStatus checkNecessaryParams(string eventName, Moment moment)
         {
-            List<string> necessaryParamNames = new List<string>();
-            foreach (KeyValuePair<string, string> dependency in dependencies)
-            {
-                if (dependency.Key == eventName)
-                {
-                    necessaryParamNames.Add(dependency.Value);
-                }
-            }
+            List<string> necessaryParamNames = Program.getListNecessaryParamNames(eventName);
             if (necessaryParamNames.Count == 0)
             {
                 return Program.NecessaryParamsStatus.ExistTrue;
@@ -211,7 +206,20 @@ namespace AlgoritmRassh
             return Program.NecessaryParamsStatus.ExistTrue;
         }
 
-        static void getDependenciesFromDB()
+        static public List<string> getListNecessaryParamNames (string eventName)
+        {
+            List<string> necessaryParamNames = new List<string>();
+            foreach (KeyValuePair<string, string> dependency in Program.dependencies)
+            {
+                if (dependency.Key == eventName)
+                {
+                    necessaryParamNames.Add(dependency.Value);
+                }
+            }
+            return necessaryParamNames;
+        }
+
+        static private void getDependenciesFromDB()
         {
             string fileName = "DBConnections\\DBViolationAlgoritm.mdb";
             AccessDBConnection accessDBConnection = new AccessDBConnection(fileName);

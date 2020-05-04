@@ -13,10 +13,10 @@ namespace AlgoritmRassh
         public List<VelocityRestriction> list;
         public AllActiveVelocityRestrictions()
         {
-            if (!AllActiveVelocityRestrictions.areAllRestrictionsInitialized())
+            foreach (string necessaryParamName in Program.getListNecessaryParamNames("AllActiveVelocityRestrictions"))
             {
-                throw new Exception("Не все ограничения могут быть проверены.");
-            }
+                Program.allNecessaryParamsFoundOrException(necessaryParamName);
+            }            
             this.list = new List<VelocityRestriction>();
             this.exist = false;
             List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);
@@ -28,24 +28,6 @@ namespace AlgoritmRassh
                     this.exist = true;
                 }                
             }
-        }
-        public static bool areAllRestrictionsInitialized()
-        {
-            List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>(Program.allVelocityRestrictions);      
-            foreach (VelocityRestriction velocityRestriction in allVelocityRestrictions)
-            {
-                //Exception может выскочить при попытке проверить все необходимые элементы для проверки ограничения на факт,
-                //что оно является активным в данный thisMoment
-                try
-                {
-                    velocityRestriction.checkNecessaryParams();
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }                
-            }
-            return true;
         }
     }
 }
