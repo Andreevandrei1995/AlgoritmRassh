@@ -19,11 +19,11 @@ namespace AlgoritmRassh
         {
             Program.allNecessaryParamsFoundOrException("velocityRestrictionSvetofor");
             Moment thisMoment = Program.lastMoment;
-            if (thisMoment.svetofor.coordinate.GetMetricCoord() - thisMoment.currentCoordinate.GetMetricCoord() > this.metricDistance)
+            if (thisMoment.svetofor.coordinate.GetMetricCoord() - thisMoment.trainCoordinate.GetMetricCoord() > this.metricDistance)
             {
                 return false;
             }
-            if (thisMoment.locoSvetofor.color != this.colorSvetofor)
+            if (thisMoment.trainSvetofor.color != this.colorSvetofor)
             {
                 return false;
             }

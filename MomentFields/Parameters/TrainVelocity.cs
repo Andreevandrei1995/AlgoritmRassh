@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class LocoSvetofor : InterfaceExist
+    class TrainVelocity : Velocity, InterfaceExist
     {
-        public bool exist { get; set; }        
-        public string color;
-        public LocoSvetofor(string color)
+        public bool exist { get; set; }
+        public TrainVelocity(double value) : base(value)
         {
-            Program.allNecessaryParamsFoundOrException("locoSvetofor");
+            Program.allNecessaryParamsFoundOrException("trainVelocity");
             Moment thisMoment = Program.lastMoment;
-            this.color = color;
             this.exist = true;
         }
     }

@@ -11,20 +11,20 @@ namespace AlgoritmRassh
     class Moment
     {
         public int index { get; set; }
-        public CurrentCoordinate currentCoordinate;
-        public LocoSvetofor locoSvetofor;
+        public TrainCoordinate trainCoordinate;
+        public TrainSvetofor trainSvetofor;
         public Svetofor svetofor;
-        public CurrentVelocity currentVelocity;
+        public TrainVelocity trainVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
         public AllActiveVelocityExcesses allActiveVelocityExcesses;
         public Formulation formulation;
         public Moment(int index)
         {
             this.index = index;
-            this.currentCoordinate = null;
-            this.locoSvetofor = null;
+            this.trainCoordinate = null;
+            this.trainSvetofor = null;
             this.svetofor = null;
-            this.currentVelocity = null;
+            this.trainVelocity = null;
             this.allActiveVelocityRestrictions = null;
             this.allActiveVelocityExcesses = null;
             this.formulation = null;
@@ -37,22 +37,22 @@ namespace AlgoritmRassh
             int quantityCycles = 0;
             while (Program.checkNecessaryParams("moment") == Program.NecessaryParamsStatus.NotInitialized && quantityCycles < maxCycles)
             {
-                if (this.currentCoordinate == null)
+                if (this.trainCoordinate == null)
                 {
                     try
                     {
-                        this.currentCoordinate = new CurrentCoordinate(initialParams.kmCoordinate, initialParams.pkCoordinate, initialParams.mCoordiante);
+                        this.trainCoordinate = new TrainCoordinate(initialParams.kmCoordinate, initialParams.pkCoordinate, initialParams.mCoordiante);
                     }
                     catch (Exception e)
                     {
 
                     }
                 }
-                if (this.locoSvetofor == null)
+                if (this.trainSvetofor == null)
                 {
                     try
                     {
-                        this.locoSvetofor = new LocoSvetofor(initialParams.colorLocoSvetofor);
+                        this.trainSvetofor = new TrainSvetofor(initialParams.colorLocoSvetofor);
                     }
                     catch (Exception e)
                     {
@@ -70,11 +70,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.currentVelocity == null)
+                if (this.trainVelocity == null)
                 {
                     try
                     {
-                        this.currentVelocity = new CurrentVelocity(initialParams.valueVelocity);
+                        this.trainVelocity = new TrainVelocity(initialParams.valueVelocity);
                     }
                     catch (Exception e)
                     {

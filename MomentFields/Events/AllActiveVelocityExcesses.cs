@@ -26,7 +26,7 @@ namespace AlgoritmRassh
             //Новых или из предыдущего момента при условии, что превышение скорости уже существовало для данного типа ограничения скорости
             foreach (VelocityRestriction velocityRestriction in thisMoment.allActiveVelocityRestrictions.list)
             {
-                if (thisMoment.currentVelocity.value > velocityRestriction.velocity.value)
+                if (thisMoment.trainVelocity.value > velocityRestriction.velocity.value)
                 {
                     foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
                     {

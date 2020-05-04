@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class CurrentVelocity : Velocity, InterfaceExist
+    class TrainCoordinate : Coordinate, InterfaceExist
     {
         public bool exist { get; set; }
-        public CurrentVelocity(double value) : base(value)
+        public TrainCoordinate(string km, int pk, int m) : base(km, pk, m)
         {
-            Program.allNecessaryParamsFoundOrException("currentVelocity");
+            Program.allNecessaryParamsFoundOrException("trainCoordinate");
             Moment thisMoment = Program.lastMoment;
             this.exist = true;
         }
