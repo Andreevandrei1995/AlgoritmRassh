@@ -35,7 +35,7 @@ namespace AlgoritmRassh
             FieldInfo[] allFields = type.GetFields();
             int maxCycles = allFields.Length;
             int quantityCycles = 0;
-            while (!this.checkAllFieldsAreInitialized() && quantityCycles < maxCycles)
+            while (Program.checkNecessaryParams("moment") != Program.NecessaryParamsStatus.NotInitialized && quantityCycles < maxCycles)
             {
                 if (this.currentCoordinate == null)
                 {
@@ -116,39 +116,6 @@ namespace AlgoritmRassh
                 }
                 quantityCycles++;
             }
-        }
-        private bool checkAllFieldsAreInitialized ()
-        {
-            Type type = this.GetType();
-            FieldInfo[] allFields = type.GetFields();
-            string beginOfOutString = "Проверка объекта класса Moment.";
-            int quantityFoundNecessaryParams = 0;
-            foreach (FieldInfo fieldInfo in type.GetFields())
-            {
-                var fieldValue = fieldInfo.GetValue(this);
-                if (!(fieldValue is Object))
-                {
-                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " имеет тип поля не Object.");
-                    continue;
-                }
-                if (fieldValue == null)
-                {
-                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не инициализировано.");
-                    continue;
-                }
-                //Работаем с полем exist
-                if (!(fieldValue is InterfaceExist))
-                {
-                    //Console.WriteLine(beginOfOutString + " Поле " + fieldInfo + " не наследует интерфейс InterfaceExist.");
-                    continue;
-                }
-                quantityFoundNecessaryParams++;
-            }
-            if (quantityFoundNecessaryParams == allFields.Length)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

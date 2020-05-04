@@ -45,6 +45,15 @@ namespace AlgoritmRassh
         //static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
         static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
         {
+            new KeyValuePair<string, string>("moment", "currentCoordinate"),
+            new KeyValuePair<string, string>("moment", "locoSvetofor"),
+            new KeyValuePair<string, string>("moment", "svetofor"),
+            new KeyValuePair<string, string>("moment", "currentVelocity"),
+            new KeyValuePair<string, string>("moment", "allActiveVelocityRestrictions"),
+            new KeyValuePair<string, string>("moment", "allActiveVelocityExcesses"),
+            new KeyValuePair<string, string>("moment", "formulation"),
+
+
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "currentCoordinate"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "locoSvetofor"),
@@ -94,35 +103,35 @@ namespace AlgoritmRassh
                 valueVelocity = 18
             }
         };
-        static public PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName)
+        static public Program.PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName)
         {
-            NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName);
-            if (necessaryParamsStatus == NecessaryParamsStatus.NotInitialized)
+            Program.NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName);
+            if (necessaryParamsStatus == Program.NecessaryParamsStatus.NotInitialized)
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
                 //Console.WriteLine(s);
                 throw new Exception(s);
             }
-            return (PositiveNecessaryParamsStatus)necessaryParamsStatus;
+            return (Program.PositiveNecessaryParamsStatus)necessaryParamsStatus;
         }
-        static public PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName, Moment moment)
+        static public Program.PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName, Moment moment)
         {
-            NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName, moment);
-            if (necessaryParamsStatus == NecessaryParamsStatus.NotInitialized)
+            Program.NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName, moment);
+            if (necessaryParamsStatus == Program.NecessaryParamsStatus.NotInitialized)
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
                 //Console.WriteLine(s);
                 throw new Exception(s);
             }
-            return (PositiveNecessaryParamsStatus)necessaryParamsStatus;
+            return (Program.PositiveNecessaryParamsStatus)necessaryParamsStatus;
         }
-        static public NecessaryParamsStatus checkNecessaryParams(string eventName)
+        static public Program.NecessaryParamsStatus checkNecessaryParams(string eventName)
         {
             if (Program.allMoments.Count == 0)
             {
-                return NecessaryParamsStatus.NotInitialized;
+                return Program.NecessaryParamsStatus.NotInitialized;
             }
-            return checkNecessaryParams(eventName, allMoments[allMoments.Count - 1]);
+            return Program.checkNecessaryParams(eventName, Program.allMoments[Program.allMoments.Count - 1]);
         }
 
         public enum NecessaryParamsStatus : int
@@ -136,10 +145,10 @@ namespace AlgoritmRassh
         }
         public enum PositiveNecessaryParamsStatus : int
         {
-            ExistFalse = NecessaryParamsStatus.ExistFalse,
-            ExistTrue = NecessaryParamsStatus.ExistTrue
+            ExistFalse = Program.NecessaryParamsStatus.ExistFalse,
+            ExistTrue = Program.NecessaryParamsStatus.ExistTrue
         }
-        static public NecessaryParamsStatus checkNecessaryParams(string eventName, Moment moment)
+        static public Program.NecessaryParamsStatus checkNecessaryParams(string eventName, Moment moment)
         {
             List<string> necessaryParamNames = new List<string>();
             foreach (KeyValuePair<string, string> dependency in dependencies)
@@ -151,7 +160,7 @@ namespace AlgoritmRassh
             }
             if (necessaryParamNames.Count == 0)
             {
-                return NecessaryParamsStatus.ExistTrue;
+                return Program.NecessaryParamsStatus.ExistTrue;
             }
             Type type = typeof(Moment);
             string beginOfOutString = "Проверка для поля " + eventName + ".";
@@ -165,20 +174,20 @@ namespace AlgoritmRassh
                 {
                     Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
                     //continue;
-                    return NecessaryParamsStatus.NotInitialized;
+                    return Program.NecessaryParamsStatus.NotInitialized;
                 }
                 var fieldValue = fieldInfo.GetValue(moment);
                 if (!(fieldValue is InterfaceExist))
                 {
                     //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
                     //continue;
-                    return NecessaryParamsStatus.NotInitialized;
+                    return Program.NecessaryParamsStatus.NotInitialized;
                 }
                 if (fieldValue == null)
                 {
                     //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не инициализировано.");
                     //continue;
-                    return NecessaryParamsStatus.NotInitialized;
+                    return Program.NecessaryParamsStatus.NotInitialized;
                 }
                 //quantityFoundNecessaryParams++;
                 InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
@@ -192,13 +201,13 @@ namespace AlgoritmRassh
 
             //if (quantityFoundNecessaryParams != necessaryParamNames.Count)
             //{
-            //    return NecessaryParamsStatus.NotInitialized;
+            //    return Program.NecessaryParamsStatus.NotInitialized;
             //}
             if (quantityFoundNecessaryParamsWithExistTrue != necessaryParamNames.Count)
             {
-                return NecessaryParamsStatus.ExistFalse;
+                return Program.NecessaryParamsStatus.ExistFalse;
             }
-            return NecessaryParamsStatus.ExistTrue;
+            return Program.NecessaryParamsStatus.ExistTrue;
         }
 
         static void getDependenciesFromDB()
