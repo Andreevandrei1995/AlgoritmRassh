@@ -94,33 +94,52 @@ namespace AlgoritmRassh
                 valueVelocity = 18
             }
         };
-        static public void allNecessaryParamsFoundOrException(string eventName)
+        static public PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName)
         {
-            if (!Program.checkNecessaryParams(eventName))
+            NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName);
+            if (necessaryParamsStatus == NecessaryParamsStatus.NotInitialized)
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
                 //Console.WriteLine(s);
                 throw new Exception(s);
             }
+            return (PositiveNecessaryParamsStatus)necessaryParamsStatus;
         }
-        static public void allNecessaryParamsFoundOrException(string eventName, Moment moment)
+        static public PositiveNecessaryParamsStatus allNecessaryParamsFoundOrException(string eventName, Moment moment)
         {
-            if (!Program.checkNecessaryParams(eventName, moment))
+            NecessaryParamsStatus necessaryParamsStatus = Program.checkNecessaryParams(eventName, moment);
+            if (necessaryParamsStatus == NecessaryParamsStatus.NotInitialized)
             {
                 string s = "Нет всех необходимых параметров для создания объекта класса " + eventName;
                 //Console.WriteLine(s);
                 throw new Exception(s);
             }
+            return (PositiveNecessaryParamsStatus)necessaryParamsStatus;
         }
-        static public bool checkNecessaryParams(string eventName)
+        static public NecessaryParamsStatus checkNecessaryParams(string eventName)
         {
-            if (allMoments.Count == 0)
+            if (Program.allMoments.Count == 0)
             {
-                return false;
+                return NecessaryParamsStatus.NotInitialized;
             }
             return checkNecessaryParams(eventName, allMoments[allMoments.Count - 1]);
         }
-        static public bool checkNecessaryParams(string eventName, Moment moment)
+
+        public enum NecessaryParamsStatus : int
+        {
+            //Не все необходимые параметры инициализированы
+            NotInitialized = 1,
+            //Все необходимые параметры инициализированы, но есть параметры, у которых параметр exist = false
+            ExistFalse = 2,
+            //Все необходимые параметры инициализированы, у всех параметров exist = true
+            ExistTrue = 3
+        }
+        public enum PositiveNecessaryParamsStatus : int
+        {
+            ExistFalse = NecessaryParamsStatus.ExistFalse,
+            ExistTrue = NecessaryParamsStatus.ExistTrue
+        }
+        static public NecessaryParamsStatus checkNecessaryParams(string eventName, Moment moment)
         {
             List<string> necessaryParamNames = new List<string>();
             foreach (KeyValuePair<string, string> dependency in dependencies)
@@ -132,45 +151,54 @@ namespace AlgoritmRassh
             }
             if (necessaryParamNames.Count == 0)
             {
-                return true;
+                return NecessaryParamsStatus.ExistTrue;
             }
             Type type = typeof(Moment);
             string beginOfOutString = "Проверка для поля " + eventName + ".";
-            int quantityFoundNecessaryParams = 0;
+            //int quantityFoundNecessaryParams = 0;
+            int quantityFoundNecessaryParamsWithExistTrue = 0;
             foreach (String necessaryParamName in necessaryParamNames)
             {
                 FieldInfo fieldInfo = type.GetField(necessaryParamName);
                 //Метод GetField возвращает null, если поле не найдено в классе
                 if (fieldInfo == null)
                 {
-                    //Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
-                    continue;
+                    Console.WriteLine(beginOfOutString + " Поля " + necessaryParamName + " нет в объекте класса Moment.");
+                    //continue;
+                    return NecessaryParamsStatus.NotInitialized;
                 }
                 var fieldValue = fieldInfo.GetValue(moment);
-                if (!(fieldValue is Object))
+                if (!(fieldValue is InterfaceExist))
                 {
-                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет тип поля не Object.");
-                    continue;
+                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
+                    //continue;
+                    return NecessaryParamsStatus.NotInitialized;
                 }
                 if (fieldValue == null)
                 {
                     //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не инициализировано.");
-                    continue;
+                    //continue;
+                    return NecessaryParamsStatus.NotInitialized;
                 }
-                //Работаем с полем exist
-                if (!(fieldValue is InterfaceExist))
+                //quantityFoundNecessaryParams++;
+                InterfaceExist interfaceExist = (InterfaceExist)fieldValue;
+                if (!interfaceExist.exist)
                 {
-                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " не наследует интерфейс InterfaceExist.");
+                    //Console.WriteLine(beginOfOutString + " Поле " + necessaryParamName + " имеет значение поля exist равное false.");
                     continue;
                 }
-                quantityFoundNecessaryParams++;
+                quantityFoundNecessaryParamsWithExistTrue++;
             }
 
-            if (quantityFoundNecessaryParams == necessaryParamNames.Count)
+            //if (quantityFoundNecessaryParams != necessaryParamNames.Count)
+            //{
+            //    return NecessaryParamsStatus.NotInitialized;
+            //}
+            if (quantityFoundNecessaryParamsWithExistTrue != necessaryParamNames.Count)
             {
-                return true;
+                return NecessaryParamsStatus.ExistFalse;
             }
-            return false;
+            return NecessaryParamsStatus.ExistTrue;
         }
 
         static void getDependenciesFromDB()
