@@ -9,7 +9,7 @@ namespace AlgoritmRassh
     {
         static void Main(string[] args)
         {
-            //getDependenciesFromDB();
+            getDependenciesFromDB();
             DateTime begin;
             DateTime end;
 
@@ -42,31 +42,31 @@ namespace AlgoritmRassh
             new VelocityRestrictionSvetofor(5,"velocityRestrictionSvetofor","КЖ",400)
         };
 
-        //static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
-        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
-        {
-            new KeyValuePair<string, string>("moment", "trainCoordinate"),
-            new KeyValuePair<string, string>("moment", "trainSvetofor"),
-            new KeyValuePair<string, string>("moment", "svetofor"),
-            new KeyValuePair<string, string>("moment", "trainVelocity"),
-            new KeyValuePair<string, string>("moment", "activeVelocityRestrictions"),
-            new KeyValuePair<string, string>("moment", "activeVelocityExcesses"),
-            new KeyValuePair<string, string>("moment", "endedInPreviousMomentVelocityExcesses"),
-            new KeyValuePair<string, string>("moment", "formulation"),
+        static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
+        //static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>()
+        //{
+        //    new KeyValuePair<string, string>("moment", "trainCoordinate"),
+        //    new KeyValuePair<string, string>("moment", "trainSvetofor"),
+        //    new KeyValuePair<string, string>("moment", "trainVelocity"),
+        //    new KeyValuePair<string, string>("moment", "svetofor"),
+        //    new KeyValuePair<string, string>("moment", "activeVelocityRestrictions"),
+        //    new KeyValuePair<string, string>("moment", "activeVelocityExcesses"),
+        //    new KeyValuePair<string, string>("moment", "endedInPreviousMomentVelocityExcesses"),
+        //    new KeyValuePair<string, string>("moment", "formulation"),
 
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainCoordinate"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
-            new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainSvetofor"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainCoordinate"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
+        //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainSvetofor"),
 
-            new KeyValuePair<string, string>("activeVelocityRestrictions", "velocityRestrictionSvetofor"),
+        //    new KeyValuePair<string, string>("activeVelocityRestrictions", "velocityRestrictionSvetofor"),
 
-            new KeyValuePair<string, string>("activeVelocityExcesses", "trainVelocity"),
-            new KeyValuePair<string, string>("activeVelocityExcesses", "activeVelocityRestrictions"),
+        //    new KeyValuePair<string, string>("activeVelocityExcesses", "trainVelocity"),
+        //    new KeyValuePair<string, string>("activeVelocityExcesses", "activeVelocityRestrictions"),
 
-            new KeyValuePair<string, string>("endedInPreviousMomentVelocityExcesses", "activeVelocityExcesses"),
+        //    new KeyValuePair<string, string>("endedInPreviousMomentVelocityExcesses", "activeVelocityExcesses"),
 
-            new KeyValuePair<string, string>("formulation", "endedInPreviousMomentVelocityExcesses")
-        };
+        //    new KeyValuePair<string, string>("formulation", "endedInPreviousMomentVelocityExcesses")
+        //};
 
         /// <summary>
         /// Исходные данные для расшифровки посекундно (из поездки и номограммы)

@@ -42,7 +42,7 @@ namespace AlgoritmRassh
                         endedVelocityExcess.endMoment.index
                     );
                     list.Add(formulation);
-                    //Console.WriteLine(formulation);
+                    Console.WriteLine(formulation);
                     this.exist = true;
                 }
             }
