@@ -13,7 +13,7 @@ namespace AlgoritmRassh
         public List<VelocityRestriction> list;
         public ActiveVelocityRestrictions()
         {
-            foreach (string dependencyName in Program.getDependencyNamesList("ActiveVelocityRestrictions"))
+            foreach (string dependencyName in Program.getDependencyNamesList("activeVelocityRestrictions"))
             {
                 Program.allDependenciesInitializedOrException(dependencyName);
             }
