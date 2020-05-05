@@ -17,7 +17,7 @@ namespace AlgoritmRassh
         public TrainVelocity trainVelocity;
         public ActiveVelocityRestrictions activeVelocityRestrictions;
         public ActiveVelocityExcesses activeVelocityExcesses;
-        public EndedInPreviousMomentExcesses endedInPreviousMomentExcesses;
+        public EndedInPreviousMomentVelocityExcesses endedInPreviousMomentVelocityExcesses;
         public Formulation formulation;
         public Moment(int index)
         {
@@ -28,7 +28,7 @@ namespace AlgoritmRassh
             this.trainVelocity = null;
             this.activeVelocityRestrictions = null;
             this.activeVelocityExcesses = null;
-            this.endedInPreviousMomentExcesses = null;
+            this.endedInPreviousMomentVelocityExcesses = null;
             this.formulation = null;
         }
         /// <summary>
@@ -110,11 +110,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.endedInPreviousMomentExcesses == null)
+                if (this.endedInPreviousMomentVelocityExcesses == null)
                 {
                     try
                     {
-                        this.endedInPreviousMomentExcesses = new EndedInPreviousMomentExcesses();
+                        this.endedInPreviousMomentVelocityExcesses = new EndedInPreviousMomentVelocityExcesses();
                     }
                     catch (Exception e)
                     {

@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="BaseClassesAndInterfaces\VelocityExcess.cs" />
     <Compile Include="DBConnections\AccessDBConnection.cs" />
-    <Compile Include="MomentFields\Events\EndedInPreviousMomentExcesses.cs" />
+    <Compile Include="MomentFields\Events\EndedInPreviousMomentVelocityExcesses.cs" />
     <Compile Include="MomentFields\Events\ActiveVelocityExcesses.cs" />
     <Compile Include="MomentFields\Formulations\Formulation.cs" />
     <Compile Include="InitialParamsForOneMoment.cs" />

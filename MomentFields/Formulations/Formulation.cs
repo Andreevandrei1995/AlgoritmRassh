@@ -6,15 +6,15 @@ namespace AlgoritmRassh
     class Formulation : InterfaceExist
     {
         public bool exist { get; set; }
-        public List<string> formulations = null;
+        public List<string> list = null;
         public Formulation()
         {
             Program.allDependenciesInitializedOrException("formulation");
             Moment currentMoment = Program.currentMoment;
 
-            this.formulations = new List<String>();
+            this.list = new List<String>();
             this.exist = false;
-            List<VelocityExcess> endedInPreviousMomentList = currentMoment.endedInPreviousMomentExcesses.exist == true ? currentMoment.endedInPreviousMomentExcesses.list : new List<VelocityExcess>();
+            List<VelocityExcess> endedInPreviousMomentList = currentMoment.endedInPreviousMomentVelocityExcesses.exist == true ? currentMoment.endedInPreviousMomentVelocityExcesses.list : new List<VelocityExcess>();
             foreach (VelocityExcess endedVelocityExcess in endedInPreviousMomentList)
             {
                 if (
@@ -41,7 +41,7 @@ namespace AlgoritmRassh
                         endedVelocityExcess.startMoment.index,
                         endedVelocityExcess.endMoment.index
                     );
-                    formulations.Add(formulation);
+                    list.Add(formulation);
                     //Console.WriteLine(formulation);
                     this.exist = true;
                 }

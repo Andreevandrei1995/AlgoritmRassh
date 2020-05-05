@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class EndedInPreviousMomentExcesses : InterfaceExist
+    class EndedInPreviousMomentVelocityExcesses : InterfaceExist
     {
         public bool exist { get; set; }
         public List<VelocityExcess> list;
-        public EndedInPreviousMomentExcesses()
+        public EndedInPreviousMomentVelocityExcesses()
         {
-            Program.allDependenciesInitializedOrException("endedInPreviousMomentExcesses");
+            Program.allDependenciesInitializedOrException("endedInPreviousMomentVelocityExcesses");
             Moment currentMoment = Program.currentMoment;
             Moment previousMoment = Program.previousMoment;
 
