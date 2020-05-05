@@ -12,8 +12,8 @@ namespace AlgoritmRassh
         public string color;
         public TrainSvetofor(string color)
         {
-            Program.allNecessaryParamsFoundOrException("trainSvetofor");
-            Moment thisMoment = Program.lastMoment;
+            Program.allDependenciesInitializedOrException("trainSvetofor");
+            Moment currentMoment = Program.currentMoment;
             this.color = color;
             this.exist = true;
         }

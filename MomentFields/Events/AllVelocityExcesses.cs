@@ -6,41 +6,43 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class AllActiveVelocityExcesses : InterfaceExist
+    class AllVelocityExcesses : InterfaceExist
     {
         public bool exist { get; set; }
-        public List<VelocityExcess> list;
-        public AllActiveVelocityExcesses()
+        public List<VelocityExcess> activeList;
+        public List<VelocityExcess> endedInPreviousMomentList;
+        public AllVelocityExcesses()
         {
-            Program.allNecessaryParamsFoundOrException("allActiveVelocityExcesses");
-            Moment thisMoment = Program.lastMoment;
+            Program.allDependenciesInitializedOrException("allVelocityExcesses");
+            Moment currentMoment = Program.currentMoment;
             Moment previousMoment = Program.previousMoment;
 
-            this.list = new List<VelocityExcess>();
-            List<VelocityExcess> listFromPreviousMoment = new List<VelocityExcess>();
-            if (previousMoment != null && previousMoment.allActiveVelocityExcesses.exist == true) {
-                listFromPreviousMoment = previousMoment.allActiveVelocityExcesses.list;
+            this.activeList = new List<VelocityExcess>();
+            this.endedInPreviousMomentList = new List<VelocityExcess>();
+            List<VelocityExcess> previousMomentActiveList = new List<VelocityExcess>();
+            if (previousMoment != null && previousMoment.allVelocityExcesses.exist == true) {
+                previousMomentActiveList = previousMoment.allVelocityExcesses.activeList;
             }
             this.exist = false;
             //Добавление превышений скорости
             //Новых или из предыдущего момента при условии, что превышение скорости уже существовало для данного типа ограничения скорости
-            if (thisMoment.allActiveVelocityRestrictions.exist == true && thisMoment.trainVelocity.exist == true)
+            if (currentMoment.allActiveVelocityRestrictions.exist == true && currentMoment.trainVelocity.exist == true)
             {
-                foreach (VelocityRestriction velocityRestriction in thisMoment.allActiveVelocityRestrictions.list)
+                foreach (VelocityRestriction velocityRestriction in currentMoment.allActiveVelocityRestrictions.list)
                 {
-                    if (thisMoment.trainVelocity.value > velocityRestriction.velocity.value)
+                    if (currentMoment.trainVelocity.value > velocityRestriction.velocity.value)
                     {
-                        foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
+                        foreach (VelocityExcess previousMomentVelocityExcess in previousMomentActiveList)
                         {
                             if (velocityRestriction == previousMomentVelocityExcess.velocityRestriction)
                             {
                                 //Добавление уже действующего превышения скорости
-                                this.list.Add(previousMomentVelocityExcess);
+                                this.activeList.Add(previousMomentVelocityExcess);
                                 goto endIf;
                             }
                         }
                         //Добавление нового превышения скорости
-                        this.list.Add(new VelocityExcess(thisMoment, velocityRestriction));
+                        this.activeList.Add(new VelocityExcess(currentMoment, velocityRestriction));
 
                         endIf:
                         this.exist = true;
@@ -48,12 +50,13 @@ namespace AlgoritmRassh
                 }
             }            
             //Проставляем endMoment для превышений скорости, которые закончились в предыдущий момент (в этот момент для них уже нет нарушений)
-            foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
+            foreach (VelocityExcess previousMomentVelocityExcess in previousMomentActiveList)
             {
-                if (this.list.IndexOf(previousMomentVelocityExcess) == -1)
+                if (this.activeList.IndexOf(previousMomentVelocityExcess) == -1)
                 {
                     //Нарушение для ограничения скорости закончилось в предыдущий момент
                     previousMomentVelocityExcess.endMoment = previousMoment;
+                    endedInPreviousMomentList.Add(previousMomentVelocityExcess);
                 }
             }
         }

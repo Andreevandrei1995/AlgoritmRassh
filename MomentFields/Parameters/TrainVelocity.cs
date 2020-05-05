@@ -11,8 +11,8 @@ namespace AlgoritmRassh
         public bool exist { get; set; }
         public TrainVelocity(double value) : base(value)
         {
-            Program.allNecessaryParamsFoundOrException("trainVelocity");
-            Moment thisMoment = Program.lastMoment;
+            Program.allDependenciesInitializedOrException("trainVelocity");
+            Moment currentMoment = Program.currentMoment;
             this.exist = true;
         }
     }

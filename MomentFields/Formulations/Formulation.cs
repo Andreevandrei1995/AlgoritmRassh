@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
@@ -12,29 +9,42 @@ namespace AlgoritmRassh
         public List<string> formulations = null;
         public Formulation()
         {
-            Program.allNecessaryParamsFoundOrException("formulation");
-            Moment thisMoment = Program.lastMoment;
-            Moment previousMoment = Program.previousMoment;
+            Program.allDependenciesInitializedOrException("formulation");
+            Moment currentMoment = Program.currentMoment;
 
             this.formulations = new List<String>();
             this.exist = false;
-            if (!(previousMoment != null && previousMoment.allActiveVelocityExcesses.exist == true))
-            {
-                return;
-            }
-            List<VelocityExcess> listFromPreviousMoment = previousMoment.allActiveVelocityExcesses.list;
-            foreach (VelocityExcess previousMomentVelocityExcess in listFromPreviousMoment)
+            List<VelocityExcess> endedInPreviousMomentList = currentMoment.allVelocityExcesses.endedInPreviousMomentList;
+            foreach (VelocityExcess endedVelocityExcess in endedInPreviousMomentList)
             {
                 if (
-                    previousMomentVelocityExcess.velocityRestriction is VelocityRestrictionSvetofor &&
-                    previousMomentVelocityExcess.velocityRestriction.type == "velocityRestrictionSvetofor" &&
-                    previousMomentVelocityExcess.endMoment == previousMoment
+                    endedVelocityExcess.velocityRestriction is VelocityRestrictionSvetofor &&
+                    endedVelocityExcess.velocityRestriction.type == "velocityRestrictionSvetofor"
                 )
                 {
-                    VelocityRestrictionSvetofor velocityRestrictionSvetofor = (VelocityRestrictionSvetofor)previousMomentVelocityExcess.velocityRestriction;
-                    formulations.Add("Формулировка ограничения для velocityRestrictionSvetofor");
+                    VelocityRestrictionSvetofor velocityRestrictionSvetofor = (VelocityRestrictionSvetofor)endedVelocityExcess.velocityRestriction;
+                    Svetofor svetofor = endedVelocityExcess.endMoment.svetofor;
+                    Velocity maxVelocity = endedVelocityExcess.startMoment.trainVelocity;
+                    for (int i = endedVelocityExcess.startMoment.index + 1; i <= endedVelocityExcess.endMoment.index; i++)
+                    {
+                        Velocity currentVelocity = Program.allMoments[i].trainVelocity;
+                        if (currentVelocity.value > maxVelocity.value)
+                        {
+                            maxVelocity = currentVelocity;
+                        }
+                    }
+                    string formulation = String.Format("Превышение скорости {0} км/ч за {1} метров до светофора {2} максимально на {3} км/ч.\nС {4} по {5} секунду.",
+                        velocityRestrictionSvetofor.velocity.value.ToString(),
+                        velocityRestrictionSvetofor.metricDistance.ToString(),
+                        svetofor.name,
+                        (maxVelocity.value - velocityRestrictionSvetofor.velocity.value).ToString(),
+                        endedVelocityExcess.startMoment.index,
+                        endedVelocityExcess.endMoment.index
+                    );
+                    formulations.Add(formulation);
+                    //Console.WriteLine(formulation);
                     this.exist = true;
-                } 
+                }
             }
         }
     }

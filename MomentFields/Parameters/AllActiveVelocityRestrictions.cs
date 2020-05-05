@@ -13,9 +13,9 @@ namespace AlgoritmRassh
         public List<VelocityRestriction> list;
         public AllActiveVelocityRestrictions()
         {
-            foreach (string necessaryParamName in Program.getListNecessaryParamNames("AllActiveVelocityRestrictions"))
+            foreach (string dependencyName in Program.getDependencyNamesList("AllActiveVelocityRestrictions"))
             {
-                Program.allNecessaryParamsFoundOrException(necessaryParamName);
+                Program.allDependenciesInitializedOrException(dependencyName);
             }
             this.list = new List<VelocityRestriction>();
             this.exist = false;

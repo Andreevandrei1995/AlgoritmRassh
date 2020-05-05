@@ -11,8 +11,8 @@ namespace AlgoritmRassh
         public bool exist { get; set; }
         public TrainCoordinate(string km, int pk, int m) : base(km, pk, m)
         {
-            Program.allNecessaryParamsFoundOrException("trainCoordinate");
-            Moment thisMoment = Program.lastMoment;
+            Program.allDependenciesInitializedOrException("trainCoordinate");
+            Moment currentMoment = Program.currentMoment;
             this.exist = true;
         }
     }

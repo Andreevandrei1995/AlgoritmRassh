@@ -16,7 +16,7 @@ namespace AlgoritmRassh
         public Svetofor svetofor;
         public TrainVelocity trainVelocity;
         public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
-        public AllActiveVelocityExcesses allActiveVelocityExcesses;
+        public AllVelocityExcesses allVelocityExcesses;
         public Formulation formulation;
         public Moment(int index)
         {
@@ -26,7 +26,7 @@ namespace AlgoritmRassh
             this.svetofor = null;
             this.trainVelocity = null;
             this.allActiveVelocityRestrictions = null;
-            this.allActiveVelocityExcesses = null;
+            this.allVelocityExcesses = null;
             this.formulation = null;
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace AlgoritmRassh
             FieldInfo[] allFields = type.GetFields();
             int maxCycles = allFields.Length;
             int quantityCycles = 0;
-            while (Program.checkNecessaryParams("moment") == Program.NecessaryParamsStatus.NotInitialized && quantityCycles < maxCycles)
+            while (Program.checkDependinciesStatus("moment") == Program.dependenciesStatus.NotInitialized && quantityCycles < maxCycles)
             {
                 if (this.trainCoordinate == null)
                 {
@@ -97,11 +97,11 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.allActiveVelocityExcesses == null)
+                if (this.allVelocityExcesses == null)
                 {
                     try
                     {
-                        this.allActiveVelocityExcesses = new AllActiveVelocityExcesses();
+                        this.allVelocityExcesses = new AllVelocityExcesses();
                     }
                     catch (Exception e)
                     {

@@ -10,10 +10,10 @@ namespace AlgoritmRassh
     {
         public Velocity velocity;
         public string type;
-        abstract public bool checkExisting(Moment moment, bool checkNecessaryParams);
-        public bool checkExisting(bool checkNecessaryParams)
+        abstract public bool checkExisting(Moment moment, bool checkDependenciesInitialized);
+        public bool checkExisting(bool checkDependenciesInitialized)
         {
-            return this.checkExisting(Program.lastMoment, checkNecessaryParams);
+            return this.checkExisting(Program.currentMoment, checkDependenciesInitialized);
         }
         public VelocityRestriction(double valueVelocity, string type)
         {            

@@ -13,8 +13,8 @@ namespace AlgoritmRassh
         public Coordinate coordinate;
         public Svetofor(string km, int pk, int m, string name)
         {
-            Program.allNecessaryParamsFoundOrException("svetofor");
-            Moment thisMoment = Program.lastMoment;
+            Program.allDependenciesInitializedOrException("svetofor");
+            Moment currentMoment = Program.currentMoment;
             this.coordinate = new Coordinate(km, pk, m);
             this.name = name;
             this.exist = true;
