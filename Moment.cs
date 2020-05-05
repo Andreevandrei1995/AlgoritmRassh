@@ -29,9 +29,14 @@ namespace AlgoritmRassh
             this.allActiveVelocityExcesses = null;
             this.formulation = null;
         }
+        /// <summary>
+        /// Заполняем момент исходя из данных поездки (текущего состояния параметров)
+        /// </summary>
+        /// <param name="initialParams"></param>
         public void init(InitialParamsForOneMoment initialParams)
         {
             Type type = this.GetType();
+            //получить массив полей класса Moment
             FieldInfo[] allFields = type.GetFields();
             int maxCycles = allFields.Length;
             int quantityCycles = 0;

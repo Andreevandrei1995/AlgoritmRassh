@@ -38,6 +38,9 @@ namespace AlgoritmRassh
         static public List<Moment> allMoments = new List<Moment>();
         static public Moment lastMoment = null;
         static public Moment previousMoment = null;
+        /// <summary>
+        /// Список всех установленных ограничений скорости
+        /// </summary>
         static public List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>()
         {
             new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400),
@@ -67,6 +70,9 @@ namespace AlgoritmRassh
             new KeyValuePair<string, string>("formulation", "allActiveVelocityExcesses")
         };
 
+        /// <summary>
+        /// Исходные данные для расшифровки посекундно (из поездки и номограммы)
+        /// </summary>
         static public List<InitialParamsForOneMoment> allInitialParams = new List<InitialParamsForOneMoment>()
         {
             new InitialParamsForOneMoment()
@@ -128,6 +134,11 @@ namespace AlgoritmRassh
             }
             return (Program.PositiveNecessaryParamsStatus)necessaryParamsStatus;
         }
+        /// <summary>
+        /// Проверка состояния параметров, необходимых для определения события eventName, в последний момент времени
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
         static public Program.NecessaryParamsStatus checkNecessaryParams(string eventName)
         {
             if (Program.allMoments.Count == 0)
@@ -151,6 +162,12 @@ namespace AlgoritmRassh
             ExistFalse = Program.NecessaryParamsStatus.ExistFalse,
             ExistTrue = Program.NecessaryParamsStatus.ExistTrue
         }
+        /// <summary>
+        /// Проверка состояния параметров, необходимых для определения события eventName, в заданнный момент времени
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="moment"></param>
+        /// <returns></returns>
         static public Program.NecessaryParamsStatus checkNecessaryParams(string eventName, Moment moment)
         {
             List<string> necessaryParamNames = Program.getListNecessaryParamNames(eventName);
@@ -172,6 +189,7 @@ namespace AlgoritmRassh
                     //continue;
                     return Program.NecessaryParamsStatus.NotInitialized;
                 }
+                //если поле necessaryParamName найдено в классе Moment, получаем его значение
                 var fieldValue = fieldInfo.GetValue(moment);
                 if (!(fieldValue is InterfaceExist))
                 {
