@@ -46,11 +46,12 @@
   <ItemGroup>
     <Compile Include="BaseClassesAndInterfaces\VelocityExcess.cs" />
     <Compile Include="DBConnections\AccessDBConnection.cs" />
-    <Compile Include="MomentFields\Events\AllVelocityExcesses.cs" />
+    <Compile Include="MomentFields\Events\EndedInPreviousMomentExcesses.cs" />
+    <Compile Include="MomentFields\Events\ActiveVelocityExcesses.cs" />
     <Compile Include="MomentFields\Formulations\Formulation.cs" />
     <Compile Include="InitialParamsForOneMoment.cs" />
     <Compile Include="BaseClassesAndInterfaces\InterfaceExist.cs" />
-    <Compile Include="MomentFields\Parameters\AllActiveVelocityRestrictions.cs" />
+    <Compile Include="MomentFields\Parameters\ActiveVelocityRestrictions.cs" />
     <Compile Include="BaseClassesAndInterfaces\Coordinate.cs" />
     <Compile Include="DBConnections\DBConnection.cs" />
     <Compile Include="MomentFields\Parameters\TrainCoordinate.cs" />

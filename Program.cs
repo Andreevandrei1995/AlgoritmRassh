@@ -49,20 +49,23 @@ namespace AlgoritmRassh
             new KeyValuePair<string, string>("moment", "trainSvetofor"),
             new KeyValuePair<string, string>("moment", "svetofor"),
             new KeyValuePair<string, string>("moment", "trainVelocity"),
-            new KeyValuePair<string, string>("moment", "allActiveVelocityRestrictions"),
-            new KeyValuePair<string, string>("moment", "allVelocityExcesses"),
+            new KeyValuePair<string, string>("moment", "activeVelocityRestrictions"),
+            new KeyValuePair<string, string>("moment", "activeVelocityExcesses"),
+            new KeyValuePair<string, string>("moment", "endedInPreviousMomentExcesses"),
             new KeyValuePair<string, string>("moment", "formulation"),
 
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainCoordinate"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
             new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainSvetofor"),
 
-            new KeyValuePair<string, string>("allActiveVelocityRestrictions", "velocityRestrictionSvetofor"),
+            new KeyValuePair<string, string>("activeVelocityRestrictions", "velocityRestrictionSvetofor"),
 
-            new KeyValuePair<string, string>("allVelocityExcesses", "trainVelocity"),
-            new KeyValuePair<string, string>("allVelocityExcesses", "allActiveVelocityRestrictions"),
+            new KeyValuePair<string, string>("activeVelocityExcesses", "trainVelocity"),
+            new KeyValuePair<string, string>("activeVelocityExcesses", "activeVelocityRestrictions"),
 
-            new KeyValuePair<string, string>("formulation", "allVelocityExcesses")
+            new KeyValuePair<string, string>("endedInPreviousMomentExcesses", "activeVelocityExcesses"),
+
+            new KeyValuePair<string, string>("formulation", "endedInPreviousMomentExcesses")
         };
 
         /// <summary>

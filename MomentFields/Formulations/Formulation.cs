@@ -14,7 +14,7 @@ namespace AlgoritmRassh
 
             this.formulations = new List<String>();
             this.exist = false;
-            List<VelocityExcess> endedInPreviousMomentList = currentMoment.allVelocityExcesses.endedInPreviousMomentList;
+            List<VelocityExcess> endedInPreviousMomentList = currentMoment.endedInPreviousMomentExcesses.exist == true ? currentMoment.endedInPreviousMomentExcesses.list : new List<VelocityExcess>();
             foreach (VelocityExcess endedVelocityExcess in endedInPreviousMomentList)
             {
                 if (

@@ -15,8 +15,9 @@ namespace AlgoritmRassh
         public TrainSvetofor trainSvetofor;
         public Svetofor svetofor;
         public TrainVelocity trainVelocity;
-        public AllActiveVelocityRestrictions allActiveVelocityRestrictions;
-        public AllVelocityExcesses allVelocityExcesses;
+        public ActiveVelocityRestrictions activeVelocityRestrictions;
+        public ActiveVelocityExcesses activeVelocityExcesses;
+        public EndedInPreviousMomentExcesses endedInPreviousMomentExcesses;
         public Formulation formulation;
         public Moment(int index)
         {
@@ -25,8 +26,9 @@ namespace AlgoritmRassh
             this.trainSvetofor = null;
             this.svetofor = null;
             this.trainVelocity = null;
-            this.allActiveVelocityRestrictions = null;
-            this.allVelocityExcesses = null;
+            this.activeVelocityRestrictions = null;
+            this.activeVelocityExcesses = null;
+            this.endedInPreviousMomentExcesses = null;
             this.formulation = null;
         }
         /// <summary>
@@ -86,22 +88,33 @@ namespace AlgoritmRassh
 
                     }
                 }
-                if (this.allActiveVelocityRestrictions == null)
+                if (this.activeVelocityRestrictions == null)
                 {
                     try
                     {
-                        this.allActiveVelocityRestrictions = new AllActiveVelocityRestrictions();
+                        this.activeVelocityRestrictions = new ActiveVelocityRestrictions();
                     }
                     catch (Exception e)
                     {
 
                     }
                 }
-                if (this.allVelocityExcesses == null)
+                if (this.activeVelocityExcesses == null)
                 {
                     try
                     {
-                        this.allVelocityExcesses = new AllVelocityExcesses();
+                        this.activeVelocityExcesses = new ActiveVelocityExcesses();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                if (this.endedInPreviousMomentExcesses == null)
+                {
+                    try
+                    {
+                        this.endedInPreviousMomentExcesses = new EndedInPreviousMomentExcesses();
                     }
                     catch (Exception e)
                     {

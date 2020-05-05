@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace AlgoritmRassh
 {
-    class AllActiveVelocityRestrictions : InterfaceExist 
+    class ActiveVelocityRestrictions : InterfaceExist 
     {
         public bool exist { get; set; }
         public List<VelocityRestriction> list;
-        public AllActiveVelocityRestrictions()
+        public ActiveVelocityRestrictions()
         {
-            foreach (string dependencyName in Program.getDependencyNamesList("AllActiveVelocityRestrictions"))
+            foreach (string dependencyName in Program.getDependencyNamesList("ActiveVelocityRestrictions"))
             {
                 Program.allDependenciesInitializedOrException(dependencyName);
             }
