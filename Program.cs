@@ -39,7 +39,8 @@ namespace AlgoritmRassh
         static public List<VelocityRestriction> allVelocityRestrictions = new List<VelocityRestriction>()
         {
             new VelocityRestrictionSvetofor(20,"velocityRestrictionSvetofor","КЖ",400),
-            new VelocityRestrictionSvetofor(5,"velocityRestrictionSvetofor","КЖ",400)
+            new VelocityRestrictionSvetofor(5,"velocityRestrictionSvetofor","КЖ",400),
+            new VelocityRestrictionPermanent(40,"velocityRestrictionPermanent","5",2,40,"5",3,40)
         };
 
         static public List<KeyValuePair<string, string>> dependencies = new List<KeyValuePair<string, string>>();
@@ -57,8 +58,10 @@ namespace AlgoritmRassh
         //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainCoordinate"),
         //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "svetofor"),
         //    new KeyValuePair<string, string>("velocityRestrictionSvetofor", "trainSvetofor"),
+        //    new KeyValuePair<string, string>("velocityRestrictionPermanent", "trainCoordinate"),
 
         //    new KeyValuePair<string, string>("activeVelocityRestrictions", "velocityRestrictionSvetofor"),
+        //    new KeyValuePair<string, string>("activeVelocityRestrictions", "velocityRestrictionPermanent"),
 
         //    new KeyValuePair<string, string>("activeVelocityExcesses", "trainVelocity"),
         //    new KeyValuePair<string, string>("activeVelocityExcesses", "activeVelocityRestrictions"),
@@ -76,26 +79,26 @@ namespace AlgoritmRassh
             new InitialParamsForOneMoment()
             {
                 kmCoordinate = "5",
-                pkCoordinate = 3,
+                pkCoordinate = 1,//3,
                 mCoordiante = 52,
                 colorLocoSvetofor = "КЖ",
                 nameSvetofor = "m3",
                 kmSvetofor = "5",
                 pkSvetofor = 6,
                 mSvetofor = 36,
-                valueVelocity = 25
+                valueVelocity = 60//25
             },
             new InitialParamsForOneMoment()
             {
                 kmCoordinate = "5",
-                pkCoordinate = 3,
+                pkCoordinate = 2,//3,
                 mCoordiante = 52,
                 colorLocoSvetofor = "КЖ",
                 nameSvetofor = "m3",
                 kmSvetofor = "5",
                 pkSvetofor = 9,
                 mSvetofor = 36,
-                valueVelocity = 25
+                valueVelocity = 60//25
             },
             new InitialParamsForOneMoment()
             {
@@ -107,7 +110,7 @@ namespace AlgoritmRassh
                 kmSvetofor = "5",
                 pkSvetofor = 6,
                 mSvetofor = 36,
-                valueVelocity = 18
+                valueVelocity = 60//18
             }
         };
         static public Program.dependenciesPositiveStatus allDependenciesInitializedOrException(string eventName)
